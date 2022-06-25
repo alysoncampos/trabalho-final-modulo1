@@ -3,9 +3,8 @@ package br.com.dbc.devland.main.entities;
 import br.com.dbc.devland.main.interfaces.Impressao;
 import br.com.dbc.devland.main.interfaces.Manipulacao;
 
-import java.util.List;
-
 public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
+
     private static String tipo = "DEV";
     private String cpf, stack;
 
@@ -22,22 +21,27 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
 
     @Override
     public void adicionar(UserDev objeto) {
-
+        getListaDeUser().add(objeto);
     }
 
     @Override
     public void editar(Integer indice, UserDev objeto) {
-
+        UserDev devProcurado = (UserDev) getListaDeUser().get(indice);
+        devProcurado.setTelefone(objeto.getTelefone());
+        devProcurado.setStack(objeto.getStack());
+        devProcurado.setEmail(objeto.getEmail());
     }
 
     @Override
     public void remover(Integer indice) {
-
+        getListaDeUser().remove(indice.intValue());
     }
 
     @Override
     public void listar() {
-
+        for (int i = 0; i < getListaDeUser().size(); i++) {
+            System.out.println("id=" + i + " | " + getListaDeUser());
+        }
     }
 
     public String getCpf() {
@@ -54,5 +58,14 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
 
     public void setStack(String stack) {
         this.stack = stack;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + '\'' + " | " +
+                "E-Mail: " + getEmail() + '\'' + " | " +
+                "Telefone: " + getTelefone() + '\'' + " | " +
+                "CPF: " + cpf + '\'' + " | " +
+                "Stack: " + stack + '\'';
     }
 }

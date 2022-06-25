@@ -20,7 +20,6 @@ public class UserEmpresa extends User implements Impressao, Manipulacao<UserEmpr
         this.cnpj = cnpj;
     }
 
-
     @Override
     public void imprimir() {
 
