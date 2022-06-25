@@ -6,7 +6,6 @@ import java.util.List;
 public abstract class User {
     private Integer id;
     private String nome, email, telefone;
-    private  static List<Postagem> postagens = new ArrayList<>();
     private  static List<User> listaDeUser = new ArrayList<>();
 
     public User(Integer id, String nome, String email, String telefone) {
@@ -46,10 +45,6 @@ public abstract class User {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public List<Postagem> getPostagens() {
-        return postagens;
     }
 
     public List<User> getListaDeUser() {

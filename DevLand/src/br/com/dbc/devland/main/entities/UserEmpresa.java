@@ -7,8 +7,8 @@ public class UserEmpresa extends User implements Impressao, Manipulacao<UserEmpr
 
     private String cnpj;
 
-    public UserEmpresa(Integer id, Integer tipo, String nome, String email, String telefone) {
-        super(id, tipo, nome, email, telefone);
+    public UserEmpresa(Integer id, String nome, String email, String telefone) {
+        super(id, nome, email, telefone);
     }
 
     @Override
@@ -18,8 +18,10 @@ public class UserEmpresa extends User implements Impressao, Manipulacao<UserEmpr
 
     @Override
     public void editar(Integer indice, UserEmpresa objeto) {
-
-
+        UserEmpresa empresaProcurada = (UserEmpresa) getListaDeUser().get(indice);
+        empresaProcurada.setNome(objeto.getNome());
+        empresaProcurada.setTelefone(objeto.getTelefone());
+        empresaProcurada.setEmail(objeto.getEmail());
     }
 
     @Override
@@ -43,7 +45,7 @@ public class UserEmpresa extends User implements Impressao, Manipulacao<UserEmpr
     public String toString() {
         return "Nome: " + getNome();
     }
-    
+
     public String getCnpj() {
         return cnpj;
     }
