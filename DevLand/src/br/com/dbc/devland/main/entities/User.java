@@ -8,8 +8,15 @@ import java.util.List;
 public abstract class User {
     private Integer id;
     private String nome, email, telefone;
-    private static List<Postagem> postagens = new ArrayList<>();
-    private static List<User> listaDeUser = new ArrayList<>();
+    private  static List<Postagem> postagens = new ArrayList<>();
+    private  static List<User> listaDeUser = new ArrayList<>();
+
+    public User(Integer id, String nome, String email, String telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+    }
 
     public Integer getId() {
         return id;
