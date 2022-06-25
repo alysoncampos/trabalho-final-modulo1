@@ -1,7 +1,5 @@
 package br.com.dbc.devland.main.entities;
 
-import br.com.dbc.devland.main.interfaces.Manipulacao;
-
 import java.util.ArrayList;
 import java.util.List;
 
