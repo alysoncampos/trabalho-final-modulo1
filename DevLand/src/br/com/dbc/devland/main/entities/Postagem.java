@@ -10,7 +10,6 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
     private String titulo, texto;
     private Date data;
     private User usuario;
-
     @Override
     public void adicionar(Postagem objeto) {
 

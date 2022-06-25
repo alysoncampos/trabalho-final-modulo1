@@ -4,7 +4,6 @@ import br.com.dbc.devland.main.interfaces.Impressao;
 import br.com.dbc.devland.main.interfaces.Manipulacao;
 
 public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
-
     private static String tipo = "DEV";
     private String cpf, stack;
 
