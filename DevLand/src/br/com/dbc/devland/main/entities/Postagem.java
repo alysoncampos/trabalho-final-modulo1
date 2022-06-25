@@ -11,9 +11,17 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
     private Date data;
     private User usuario;
 
+    public Postagem(Integer id, String titulo, String texto, Date data, User usuario) {
+        this.id = id;
+        this.titulo = titulo;
+        this.texto = texto;
+        this.data = data;
+        this.usuario = usuario;
+    }
+
     @Override
     public void adicionar(Postagem objeto) {
-
+        
     }
 
     @Override
