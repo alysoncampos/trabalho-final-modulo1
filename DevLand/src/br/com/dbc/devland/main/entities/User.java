@@ -2,7 +2,7 @@ package br.com.dbc.devland.main.entities;
 
 import java.util.List;
 
-public class User {
+public abstract class User {
     private Integer id;
     private String nome, email, telefone;
     private List<Postagem> postagens;
