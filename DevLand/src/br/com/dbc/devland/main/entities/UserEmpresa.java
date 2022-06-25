@@ -1,7 +1,11 @@
 package br.com.dbc.devland.main.entities;
 
-public class UserEmpresa extends User{
-    static String tipo = "EMPRESA";
+import br.com.dbc.devland.main.interfaces.Impressao;
+import br.com.dbc.devland.main.interfaces.Manipulacao;
+
+public class UserEmpresa extends User implements Impressao, Manipulacao<UserEmpresa> {
+
+    private static String tipo = "EMPRESA";
     private String cnpj;
 
     public String getCnpj() {
@@ -11,4 +15,30 @@ public class UserEmpresa extends User{
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
+    @Override
+    public void imprimir() {
+
+    }
+
+    @Override
+    public void adicionar(UserEmpresa objeto) {
+
+    }
+
+    @Override
+    public void editar(Integer indice, UserEmpresa objeto) {
+
+    }
+
+    @Override
+    public void remover(Integer indice) {
+
+    }
+
+    @Override
+    public void listar() {
+
+    }
+
 }
