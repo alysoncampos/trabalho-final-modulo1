@@ -1,11 +1,15 @@
 package br.com.dbc.devland.main.entities;
 
+import br.com.dbc.devland.main.interfaces.Manipulacao;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class User {
     private Integer id;
     private String nome, email, telefone;
-    private List<Postagem> postagens;
+    private static List<Postagem> postagens = new ArrayList<>();
+    private static List<User> listaDeUser = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -43,7 +47,8 @@ public abstract class User {
         return postagens;
     }
 
-    public void setPostagens(List<Postagem> postagens) {
-        this.postagens = postagens;
+    public List<User> getListaDeUser() {
+        return listaDeUser;
     }
+
 }
