@@ -7,8 +7,8 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
     private static String tipo = "DEV";
     private String cpf, stack, cv;
 
-    public UserDev(Integer id, String nome, String email, String telefone, String cpf, String stack, String cv) {
-        super(id, nome, email, telefone);
+    public UserDev(String nome, String email, String telefone, String cpf, String stack, String cv) {
+        super(nome, email, telefone);
         this.cpf = cpf;
         this.stack = stack;
         this.cv = cv;
