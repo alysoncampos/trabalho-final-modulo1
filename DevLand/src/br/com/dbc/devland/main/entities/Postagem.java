@@ -8,17 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 public class Postagem implements Impressao, Manipulacao<Postagem> {
-    private Integer id;
     private String titulo, texto;
-    private String data;
     private User usuario;
-    List<Postagem> listaPostagens = new ArrayList<>();
+    private List<Postagem> listaPostagens = new ArrayList<>();
 
-    public Postagem(Integer id, String titulo, String texto, String data, User usuario) {
-        this.id = id;
+
+    public Postagem(String titulo, String texto, User usuario) {
         this.titulo = titulo;
         this.texto = texto;
-        this.data = data;
         this.usuario = usuario;
     }
 
@@ -42,21 +39,13 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
     @Override
     public void listar() {
         for (int i = 0; i < getListaPostagens().size(); i++){
-            System.out.println(getListaPostagens().get(i));
+            System.out.println("id=" + i + " | " + getListaPostagens().get(i));
         }
     }
 
     @Override
     public void imprimir() {
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getTitulo() {
@@ -73,14 +62,6 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
 
     public void setTexto(String texto) {
         this.texto = texto;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 
     public User getUsuario() {
