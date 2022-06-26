@@ -19,7 +19,7 @@ public class Main {
         int opcao;
         do {
             System.out.println("Seja Bem-Vindo \n" +
-                    "Deseja a area de Dev's ou de Empresas?" + "\n" + "Digite 1 para Dev / 2 - para Empregador / 10 - para fechar o sistema");
+                    "Digite 1 para Dev / 2 - para Empregador / 10 - para fechar o sistema");
             int opcao2 = scanner.nextInt();
             opcao = opcao2;
             if (opcao == 1) {
@@ -118,13 +118,13 @@ public class Main {
                     scanner.nextLine();
                     switch (opcao2) {
                         case 1:
-                            System.out.println("Digite seu nome");
+                            System.out.println("Digite o Nome da Empresa");
                             empresa.setNome(scanner.nextLine());
                             System.out.println("Digite o CNPJ");
                             empresa.setCnpj(scanner.nextLine());
-                            System.out.println("Digite o email");
+                            System.out.println("Digite o E-Mail");
                             empresa.setEmail(scanner.nextLine());
-                            System.out.println("Digite o seu telefone");
+                            System.out.println("Digite o seu Telefone");
                             empresa.setTelefone(scanner.nextLine());
                             empresa.adicionar(empresa);
                             break;
@@ -132,15 +132,15 @@ public class Main {
                             empresa.listar();
                             break;
                         case 3:
-                            System.out.println("Qual pessoa você deseja editar?");
+                            System.out.println("Qual Empresa você deseja editar?");
                             empresa.listar();
                             int index = scanner.nextInt();
                             scanner.nextLine();
-                            System.out.println("Digite seu Nome:");
+                            System.out.println("Digite o nome da Empresa:");
                             empresaNova.setNome(scanner.nextLine());
-                            System.out.println("Digite seu novo E-Mail:");
+                            System.out.println("Digite o novo E-Mail da Empresa:");
                             empresaNova.setEmail(scanner.nextLine());
-                            System.out.println("Digite seu novo telefone:");
+                            System.out.println("Digite o novo telefone da Empresa:");
                             empresaNova.setTelefone(scanner.nextLine());
                             empresa.editar(index, empresaNova);
                             break;

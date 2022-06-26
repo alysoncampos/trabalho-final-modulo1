@@ -78,7 +78,7 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
 
     @Override
     public String toString() {
-        return "Nome da Empresa: " + getNome() + '\'' + " | " +
+        return "Nome do Dev: " + getNome() + '\'' + " | " +
                 "E-Mail: " + getEmail() + '\'' + " | " +
                 "Telefone: " + getTelefone() + '\'' + " | " +
                 "CPF: " + cpf + '\'' + " | " +
