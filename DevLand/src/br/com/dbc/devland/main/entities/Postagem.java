@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Postagem implements Impressao, Manipulacao<Postagem> {
+public class Postagem implements Manipulacao<Postagem> {
     private Integer id;
     private String titulo, texto;
     private String data;
@@ -46,11 +46,6 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
         for (int i = 0; i < getListaPostagens().size(); i++){
             System.out.println(getListaPostagens().get(i));
         }
-    }
-
-    @Override
-    public void imprimir() {
-
     }
 
     public Integer getId() {
@@ -101,5 +96,4 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
         return "Título: " + getTitulo() + " Texto: " + getTexto() + " Empresa:  " + getUsuario().getNome();
 
     }
-
 }

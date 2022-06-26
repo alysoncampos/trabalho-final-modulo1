@@ -15,6 +15,10 @@ public abstract class User {
         this.telefone = telefone;
     }
 
+    public User() {
+
+    }
+
     public Integer getId() {
         return id;
     }
