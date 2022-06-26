@@ -1,46 +1,26 @@
 package br.com.dbc.devland.main.entities;
 
-import br.com.dbc.devland.main.interfaces.Impressao;
-import br.com.dbc.devland.main.interfaces.Manipulacao;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-public class Postagem implements Impressao, Manipulacao<Postagem> {
-    private String titulo, texto;
+public class Postagem {
     private User usuario;
-    private List<Postagem> listaPostagens = new ArrayList<>();
+    private String titulo, texto;
 
-    public Postagem(String titulo, String texto, User usuario) {
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String date = formatterData.format(now);
+
+    DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+    String time = formatterHora.format(now);
+
+    public Postagem(){
+        super();
+    }
+    public Postagem(User usuario, String titulo, String texto) {
         this.titulo = titulo;
         this.texto = texto;
         this.usuario = usuario;
-    }
-
-
-    @Override
-    public void adicionar(Postagem objeto) {
-        getListaPostagens().add(objeto);
-    }
-
-    @Override
-    public void editar(Integer indice, Postagem objeto) {
-        Postagem postagemProcurada = (Postagem) getListaPostagens().get(indice);
-        postagemProcurada.setTexto(objeto.getTexto());
-        postagemProcurada.setTitulo(objeto.getTitulo());
-    }
-
-    @Override
-    public void remover(Integer indice) {
-        getListaPostagens().remove(indice.intValue());
-    }
-
-    @Override
-    public void listar() {
-        for (int i = 0; i < getListaPostagens().size(); i++){
-            System.out.println("id=" + i + " | " + getListaPostagens().get(i));
-        }
     }
 
     public String getTitulo() {
@@ -63,21 +43,10 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
         return usuario;
     }
 
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<Postagem> getListaPostagens() {
-        return listaPostagens;
-    }
-
     public String toString() {
-        return "Título: " + getTitulo() + " Texto: " + getTexto() + " Empresa:  " + getUsuario().getNome();
-
-    }
-
-    @Override
-    public void imprimir(Integer indice, Object objeto) {
-
+        return "Autor: " + getUsuario().getNome() + "\n" +
+                "Data: " + date + "Hora: " + time + "\n" +
+                "Título: " + getTitulo() + "\n" +
+                "Texto: " + getTexto();
     }
 }

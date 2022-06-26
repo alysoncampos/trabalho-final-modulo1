@@ -7,8 +7,9 @@ public class UserEmpresa extends User implements Manipulacao<UserEmpresa> {
 
     private String cnpj;
 
-    public UserEmpresa(Integer id, String nome, String email, String telefone) {
-        super(id, nome, email, telefone);
+    public UserEmpresa(String nome, String email, String telefone, String cnpj) {
+        super(nome, email, telefone);
+        this.cnpj = cnpj;
     }
 
     public UserEmpresa() {
@@ -43,7 +44,7 @@ public class UserEmpresa extends User implements Manipulacao<UserEmpresa> {
     public void imprimir() {
         System.out.println("Nome: " + getNome() + "\n" +
                 "CNPJ: " + cnpj + "\n" +
-                "Endereço: " + getEmail() + "\n" +
+                "Endereï¿½o: " + getEmail() + "\n" +
                 "Telefone: " + getTelefone() + "\n");
     }*/
 

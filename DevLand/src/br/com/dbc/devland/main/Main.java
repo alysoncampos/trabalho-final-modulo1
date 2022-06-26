@@ -1,10 +1,10 @@
 package br.com.dbc.devland.main;
 
 import br.com.dbc.devland.main.entities.Postagem;
+import br.com.dbc.devland.main.entities.User;
 import br.com.dbc.devland.main.entities.UserDev;
 import br.com.dbc.devland.main.entities.UserEmpresa;
 
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -56,7 +56,7 @@ public class Main {
                             pessoa.listar();
                             break;
                         case 3:
-                            System.out.println("Qual pessoa você deseja editar?");
+                            System.out.println("Qual pessoa vocï¿½ deseja editar?");
                             pessoa.listar();
                             int index = scanner.nextInt();
                             scanner.nextLine();
@@ -71,14 +71,14 @@ public class Main {
                             pessoa.editar(index, pessoaNova);
                             break;
                         case 4:
-                            System.out.println("Qual CV você deseja imprimir?");
+                            System.out.println("Qual CV vocï¿½ deseja imprimir?");
                             pessoa.listar();
                             int index3 = scanner.nextInt();
                             scanner.nextLine();
                             pessoa.imprimir(index3, pessoaNova);
                             break;
                         case 5:
-                            System.out.println("Qual CV você deseja editar?");
+                            System.out.println("Qual CV vocï¿½ deseja editar?");
                             pessoa.listar();
                             int index2 = scanner.nextInt();
                             scanner.nextLine();
@@ -87,13 +87,13 @@ public class Main {
                             pessoa.editarCV(index2, pessoaNova);
                             break;
                         case 6:
-                            System.out.println("Qual pessoa você deseja excluir?");
+                            System.out.println("Qual pessoa vocï¿½ deseja excluir?");
                             pessoa.listar();
                             int id = scanner.nextInt();
                             pessoa.remover(id);
                             break;
                         case 7:
-                            /*System.out.println("Qual pessoa você deseja excluir?");
+                            /*System.out.println("Qual pessoa vocï¿½ deseja excluir?");
                             pessoa.listar();
                             int id = scanner.nextInt();
                             pessoa.remover(id);*/
@@ -101,7 +101,7 @@ public class Main {
                         case 9:
                             break;
                         default:
-                            System.err.println("opção inválida");
+                            System.err.println("opï¿½ï¿½o invï¿½lida");
                             break;
                     }
                 }
@@ -132,7 +132,7 @@ public class Main {
                             empresa.listar();
                             break;
                         case 3:
-                            System.out.println("Qual Empresa você deseja editar?");
+                            System.out.println("Qual Empresa vocï¿½ deseja editar?");
                             empresa.listar();
                             int index = scanner.nextInt();
                             scanner.nextLine();
@@ -145,13 +145,13 @@ public class Main {
                             empresa.editar(index, empresaNova);
                             break;
                         case 4:
-                            System.out.println("Qual Empresa você deseja excluir?");
+                            System.out.println("Qual Empresa vocï¿½ deseja excluir?");
                             empresa.listar();
                             int id = scanner.nextInt();
                             empresa.remover(id);
                             break;
                         case 5:
-                            /*System.out.println("Qual pessoa você deseja excluir?");
+                            /*System.out.println("Qual pessoa vocï¿½ deseja excluir?");
                             pessoa.listar();
                             int id = scanner.nextInt();
                             pessoa.remover(id);*/
@@ -159,12 +159,13 @@ public class Main {
                         case 9:
                             break;
                         default:
-                            System.err.println("opção inválida");
+                            System.err.println("opï¿½ï¿½o invï¿½lida");
                             break;
                     }
                 }
             }
         } while (opcao != 10);
+
     }
 }
 
