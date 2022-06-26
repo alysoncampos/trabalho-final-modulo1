@@ -12,12 +12,12 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
     private User usuario;
     private List<Postagem> listaPostagens = new ArrayList<>();
 
-
     public Postagem(String titulo, String texto, User usuario) {
         this.titulo = titulo;
         this.texto = texto;
         this.usuario = usuario;
     }
+
 
     @Override
     public void adicionar(Postagem objeto) {
@@ -41,11 +41,6 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
         for (int i = 0; i < getListaPostagens().size(); i++){
             System.out.println("id=" + i + " | " + getListaPostagens().get(i));
         }
-    }
-
-    @Override
-    public void imprimir() {
-
     }
 
     public String getTitulo() {
@@ -81,4 +76,8 @@ public class Postagem implements Impressao, Manipulacao<Postagem> {
 
     }
 
+    @Override
+    public void imprimir(Integer indice, Object objeto) {
+
+    }
 }

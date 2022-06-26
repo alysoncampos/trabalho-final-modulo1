@@ -3,12 +3,16 @@ package br.com.dbc.devland.main.entities;
 import br.com.dbc.devland.main.interfaces.Impressao;
 import br.com.dbc.devland.main.interfaces.Manipulacao;
 
-public class UserEmpresa extends User implements Impressao, Manipulacao<UserEmpresa> {
+public class UserEmpresa extends User implements Manipulacao<UserEmpresa> {
 
     private String cnpj;
 
     public UserEmpresa(Integer id, String nome, String email, String telefone) {
         super(id, nome, email, telefone);
+    }
+
+    public UserEmpresa() {
+
     }
 
     @Override
@@ -35,15 +39,21 @@ public class UserEmpresa extends User implements Impressao, Manipulacao<UserEmpr
             System.out.println(getListaDeUser().get(i));
         }
     }
-
-    @Override
+    /*@Override
     public void imprimir() {
-
-    }
+        System.out.println("Nome: " + getNome() + "\n" +
+                "CNPJ: " + cnpj + "\n" +
+                "Endereço: " + getEmail() + "\n" +
+                "Telefone: " + getTelefone() + "\n");
+    }*/
 
     @Override
     public String toString() {
-        return "Nome: " + getNome();
+
+        return "Nome: " + getNome() + '\'' + " | " +
+                "E-Mail: " + getEmail() + '\'' + " | " +
+                "Telefone: " + getTelefone() + '\'' + " | " +
+                "CNPJ: " + getCnpj() + '\'' + " | ";
     }
 
     public String getCnpj() {

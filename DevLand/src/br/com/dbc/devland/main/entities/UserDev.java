@@ -4,19 +4,18 @@ import br.com.dbc.devland.main.interfaces.Impressao;
 import br.com.dbc.devland.main.interfaces.Manipulacao;
 
 public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
-
     private static String tipo = "DEV";
-    private String cpf, stack;
+    private String cpf, stack, cv;
 
-    public UserDev(Integer id, String nome, String email, String telefone, String cpf, String stack) {
+    public UserDev(Integer id, String nome, String email, String telefone, String cpf, String stack, String cv) {
         super(id, nome, email, telefone);
         this.cpf = cpf;
         this.stack = stack;
+        this.cv = cv;
     }
 
-    @Override
-    public void imprimir() {
-
+    public UserDev() {
+        super();
     }
 
     @Override
@@ -32,6 +31,15 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
         devProcurado.setEmail(objeto.getEmail());
     }
 
+    public void editarCV(Integer indice, UserDev objeto) {
+        UserDev devProcurado = (UserDev) getListaDeUser().get(indice);
+        if (objeto.cv == null) {
+            devProcurado.cv = getCv();
+        } else {
+            devProcurado.setCv(objeto.getCv());
+        }
+    }
+
     @Override
     public void remover(Integer indice) {
         getListaDeUser().remove(indice.intValue());
@@ -40,8 +48,16 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
     @Override
     public void listar() {
         for (int i = 0; i < getListaDeUser().size(); i++) {
-            System.out.println("id=" + i + " | " + getListaDeUser());
+            System.out.println("id=" + i + " | " + getListaDeUser().get(i));
         }
+    }
+
+    public String getCv() {
+        return cv;
+    }
+
+    public void setCv(String cv) {
+        this.cv = cv;
     }
 
     public String getCpf() {
@@ -62,10 +78,16 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
 
     @Override
     public String toString() {
-        return "Nome: " + getNome() + '\'' + " | " +
+        return "Nome da Empresa: " + getNome() + '\'' + " | " +
                 "E-Mail: " + getEmail() + '\'' + " | " +
                 "Telefone: " + getTelefone() + '\'' + " | " +
                 "CPF: " + cpf + '\'' + " | " +
-                "Stack: " + stack + '\'';
+                "Stack: " + stack + '\'' + " | ";
+    }
+
+    @Override
+    public void imprimir(Integer indice, Object objeto) {
+        UserDev devProcurado = (UserDev) getListaDeUser().get(indice);
+        System.out.println("\nSeu curriculo \n-----------------\n" + devProcurado.getCv()+"\n");
     }
 }
