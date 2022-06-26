@@ -47,8 +47,13 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
 
     @Override
     public void listar() {
-        for (int i = 0; i < getListaDeUser().size(); i++) {
-            System.out.println("id=" + i + " | " + getListaDeUser().get(i));
+        if (getListaDeUser().size() < 1){
+            System.out.println("Nenhum cadastro encontrado");
+            System.exit(0);
+        }else {
+            for (int i = 0; i < getListaDeUser().size(); i++) {
+                System.out.println("id=" + i + " | " + getListaDeUser().get(i));
+            }
         }
     }
 
