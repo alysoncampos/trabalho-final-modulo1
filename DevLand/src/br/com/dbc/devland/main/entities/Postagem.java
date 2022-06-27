@@ -1,25 +1,25 @@
 package br.com.dbc.devland.main.entities;
 
+import br.com.dbc.devland.main.interfaces.Impressao;
+
 import java.util.Date;
 
-public class Postagem {
+public class Postagem implements Impressao {
 
-    private Integer id;
     private String titulo;
     private String descricao;
     private Date data;
     private Usuario usuario;
 
     public Postagem(){
-        this.id = id;
+
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public Postagem(String titulo, String descricao, Date data, Usuario usuario) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.data = data;
+        this.usuario = usuario;
     }
 
     public String getTitulo() {
@@ -55,9 +55,17 @@ public class Postagem {
     }
 
     @Override
-    public String toString() {
-        return "Data: " + data + "\n" +
-                "Título: " + getTitulo() + "\n" +
-                "Texto: " + getDescricao();
+    public void imprimir() {
+        System.out.println(this);
     }
+
+    @Override
+    public String toString() {
+        return  "Postagem\n" +
+                "Usuário: " + getUsuario().getNome() + "\n" +
+                "Título: " + titulo + "\n"+
+                "Descricao:" + descricao + "\n" +
+                "Data: " + data;
+    }
+
 }
