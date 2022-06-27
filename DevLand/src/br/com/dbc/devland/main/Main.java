@@ -16,12 +16,18 @@ public class Main {
         String texto;
 
         Endereco endereco = new Endereco();
-        Endereco endereco2 = new Endereco("Rua Oliveira Fonseca", 254, "Recife", "Pernambuco", "Brasil");
-        Endereco endereco3 = new Endereco("Av. Chico Mendes", 189, "São Paulo", "São Paulo", "Brasil");
+        Endereco endereco2 = new Endereco("Rua Oliveira Fonseca", "254", "Recife", "Pernambuco", "Brasil");
+        Endereco endereco3 = new Endereco("Av. Chico Mendes", "189", "São Paulo", "São Paulo", "Brasil");
 
         UsuarioDev usuarioDev = new UsuarioDev();
         UsuarioDev usuarioDev2 = new UsuarioDev("Alyson Campos", "alyson@gmail.com", endereco2, "Backend");
         UsuarioDev usuarioDev3 = new UsuarioDev("Cesar Bandeira", "cesar@gmail.com", endereco3, "Backend");
+
+        usuarioDev2.adicionar(usuarioDev2);
+        usuarioDev3.adicionar(usuarioDev3);
+
+        usuarioDev2.publicar(usuarioDev2, "Eu sou um titulo","Eu sou uma mensagem");
+        usuarioDev3.publicar(usuarioDev3, "Eu sou um titulo2","Eu sou uma mensagem2");
 
         UsuarioEmpresa usuarioEmpresa = new UsuarioEmpresa();
         UsuarioEmpresa empresaNova = new UsuarioEmpresa();
@@ -35,6 +41,7 @@ public class Main {
             System.out.println("Digite 4 para excluir usuario");
             System.out.println("Digite 5 para realizar uma postagem");
             System.out.println("Digite 6 para excluir uma postagem");
+            System.out.println("Digite 7 para listar postagens");
             System.out.println("Digite 9 para sair");
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -60,8 +67,7 @@ public class Main {
                             System.out.println("Rua: ");
                             endereco.setLogradouro(scanner.nextLine());
                             System.out.println("Numero: ");
-                            endereco.setNumero(scanner.nextInt());
-                            scanner.nextLine();
+                            endereco.setNumero(scanner.nextLine());
                             System.out.println("Cidade: ");
                             endereco.setCidade(scanner.nextLine());
                             System.out.println("Estado: ");
@@ -85,7 +91,7 @@ public class Main {
                             System.out.print("Rua: ");
                             endereco.setLogradouro(scanner.nextLine());
                             System.out.print("Numero: ");
-                            endereco.setNumero(scanner.nextInt());
+                            endereco.setNumero(scanner.nextLine());
                             scanner.nextLine();
                             System.out.print("Cidade: ");
                             endereco.setCidade(scanner.nextLine());
@@ -120,8 +126,7 @@ public class Main {
                      System.out.println("Rua: ");
                      endereco.setLogradouro(scanner.nextLine());
                      System.out.println("Numero: ");
-                     endereco.setNumero(scanner.nextInt());
-                     scanner.nextLine();
+                     endereco.setNumero(scanner.nextLine());
                      System.out.println("Cidade: ");
                      endereco.setCidade(scanner.nextLine());
                      System.out.println("Estado: ");
