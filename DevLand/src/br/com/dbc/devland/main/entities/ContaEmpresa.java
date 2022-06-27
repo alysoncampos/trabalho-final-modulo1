@@ -60,7 +60,7 @@ public class ContaEmpresa extends Conta implements Impressao, Manipulacao<ContaE
     }
 
     @Override
-    public void imprimir(Integer indice, Object objeto) {
+    public void imprimir() {
         System.out.println(this);
     }
 

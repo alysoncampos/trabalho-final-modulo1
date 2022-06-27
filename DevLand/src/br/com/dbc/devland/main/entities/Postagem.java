@@ -56,8 +56,7 @@ public class Postagem {
 
     @Override
     public String toString() {
-        return "Autor: " + getUsuario().getNome() + "\n" +
-                "Data: " + data + "\n" +
+        return "Data: " + data + "\n" +
                 "Título: " + getTitulo() + "\n" +
                 "Texto: " + getDescricao();
     }

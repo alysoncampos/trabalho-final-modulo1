@@ -9,10 +9,6 @@ public class ContaDev extends Conta implements Impressao, Manipulacao<ContaDev> 
     private String cpf;
     private String stack;
 
-    public ContaDev(){
-        super();
-    }
-
     public ContaDev(Usuario usuario, String cpf, String stack) {
         super(usuario);
         this.cpf = cpf;
