@@ -15,6 +15,10 @@ public class ContaDev extends Conta implements Impressao, Manipulacao<ContaDev> 
         this.curriculo = curriculo;
     }
 
+    public ContaDev() {
+        super();
+    }
+
     public static String getTipo() {
         return tipo;
     }
