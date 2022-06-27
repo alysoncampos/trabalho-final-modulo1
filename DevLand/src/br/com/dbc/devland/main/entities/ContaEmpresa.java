@@ -7,50 +7,15 @@ public class ContaEmpresa extends Conta implements Impressao, Manipulacao<ContaE
 
     private String cnpj;
 
+    private static String tipo = "EMPRESA";
+
     public ContaEmpresa(Usuario usuario, String cnpj) {
         super(usuario);
         this.cnpj = cnpj;
     }
 
-    @Override
-    public void adicionar(ContaEmpresa objeto) {
-        getListaContas().add(objeto);
-    }
-
-    @Override
-    public void editar(Integer indice, ContaEmpresa objeto) {
-        ContaEmpresa empresaProcurada = (ContaEmpresa) getListaContas().get(indice);
-        empresaProcurada.(objeto.getNome());
-        empresaProcurada.setTelefone(objeto.getTelefone());
-        empresaProcurada.setEmail(objeto.getEmail());
-    }
-
-    @Override
-    public void remover(Integer indice) {
-        getListaDeUser().remove(indice.intValue());
-    }
-
-    @Override
-    public void listar() {
-        for (int i = 0; i < getListaDeUser().size(); i++){
-            System.out.println(getListaDeUser().get(i));
-        }
-    }
-    /*@Override
-    public void imprimir() {
-        System.out.println("Nome: " + getNome() + "\n" +
-                "CNPJ: " + cnpj + "\n" +
-                "Endere�o: " + getEmail() + "\n" +
-                "Telefone: " + getTelefone() + "\n");
-    }*/
-
-    @Override
-    public String toString() {
-
-        return "Nome: " + getNome() + '\'' + " | " +
-                "E-Mail: " + getEmail() + '\'' + " | " +
-                "Telefone: " + getTelefone() + '\'' + " | " +
-                "CNPJ: " + getCnpj() + '\'' + " | ";
+    public ContaEmpresa(){
+        super();
     }
 
     public String getCnpj() {
@@ -61,8 +26,48 @@ public class ContaEmpresa extends Conta implements Impressao, Manipulacao<ContaE
         this.cnpj = cnpj;
     }
 
+    public static String getTipo() {
+        return tipo;
+    }
+
+    public static void setTipo(String tipo) {
+        ContaEmpresa.tipo = tipo;
+    }
+
+    @Override
+    public void adicionar(ContaEmpresa objeto) {
+        getListaContas().add(objeto);
+    }
+
+    @Override
+    public void editar(Integer indice, ContaEmpresa objeto) {
+        ContaEmpresa empresaProcurada = (ContaEmpresa) getListaContas().get(indice);
+        empresaProcurada.setCnpj(objeto.getCnpj());
+        empresaProcurada.setNome(objeto.getNome());
+        empresaProcurada.setEmail(objeto.getEmail());
+    }
+
+    @Override
+    public void remover(Integer indice) {
+        getListaContas().remove(indice.intValue());
+    }
+
+    @Override
+    public void listar() {
+        for (int i = 0; i < getListaContas().size(); i++){
+            System.out.println(getListaContas().get(i));
+        }
+    }
+
     @Override
     public void imprimir(Integer indice, Object objeto) {
+        System.out.println(this);
+    }
 
+    @Override
+    public String toString() {
+        return  "Nome da Empresa: " + getNome() + '\'' + " | " +
+                "E-Mail: " + getEmail() + '\'' + " | " +
+                "CNPJ: " + cnpj + '\'' + " | ";
     }
 }

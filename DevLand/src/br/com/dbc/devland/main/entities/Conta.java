@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 public abstract class Conta {
     private Usuario usuario;
+<<<<<<< HEAD
     private String nome;
+=======
+
+    private String nome;
+
+>>>>>>> ec8aec511da4601c3e8cb3e8d1d509cb1c681e19
     private String email;
     private static ArrayList<Conta> listaContas = new ArrayList<>();
     private static ArrayList<Postagem> listaPostagens = new ArrayList<>();
@@ -13,8 +19,26 @@ public abstract class Conta {
         this.usuario = usuario;
     }
 
+    public Conta() {}
+
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getNome() {

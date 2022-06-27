@@ -7,7 +7,9 @@ import java.util.UUID;
 public class Usuario {
 
     private String id;
-    public Usuario(String nome) {
+    
+    public Usuario() {
+
         this.id = idUsuario();
     }
 
@@ -24,4 +26,5 @@ public class Usuario {
     public String toString() {
         return "id='" + id;
     }
+
 }

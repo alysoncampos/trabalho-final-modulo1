@@ -19,6 +19,10 @@ public class ContaDev extends Conta implements Impressao, Manipulacao<ContaDev> 
         this.stack = stack;
     }
 
+    public ContaDev() {
+        super();
+    }
+
     public static String getTipo() {
         return tipo;
     }
