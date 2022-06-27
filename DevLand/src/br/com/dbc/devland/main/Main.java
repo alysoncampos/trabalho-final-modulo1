@@ -17,7 +17,7 @@ public class Main {
         ContaDev pessoaNova = new ContaDev();
 
         ContaEmpresa empresa = new ContaEmpresa();
-        ContaEmpresa empresaNova = new ContaEmpresa();
+        //ContaEmpresa empresaNova = new ContaEmpresa();
         int opcao;
         System.out.println("Seja Bem-Vindo à DevLand - O mundo Dev é aqui");
         opcao = 0;
@@ -25,10 +25,8 @@ public class Main {
             System.out.println("Digite 1 para criar usuário");
             System.out.println("Digite 2 para listar usuários");
             System.out.println("Digite 3 para editar usuário");
-            System.out.println("Digite 6 para excluir usuario");
-            System.out.println("Digite 4 para imprimir CV");
-            System.out.println("Digite 5 para editar CV");
-            System.out.println("Digite 7 para realizar uma postagem");
+            System.out.println("Digite 4 para excluir usuario");
+            System.out.println("Digite 5 para realizar uma postagem");
             System.out.println("Digite 9 para sair");
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -50,16 +48,13 @@ public class Main {
                             pessoa.setCpf(scanner.nextLine());
                             System.out.println("Email: ");
                             pessoa.setEmail(scanner.nextLine());
-                            System.out.println("Telefone: ");
-                            pessoa.setTelefone(scanner.nextLine());
                             System.out.println("Stack: ");
                             pessoa.setStack(scanner.nextLine());
-                            System.out.println("CV: ");
-                            pessoa.setCv(scanner.nextLine());
                             pessoa.adicionar(pessoa);
                             System.out.println("Cadastro efetuado com sucesso!");
                             break;
                         case 2 :
+                            empresa = new ContaEmpresa();
                             System.out.println("Olá, empresa parceira! Preencha o cadastro: ");
                             System.out.println("Nome: ");
                             empresa.setNome(scanner.nextLine());
@@ -67,8 +62,6 @@ public class Main {
                             empresa.setCnpj(scanner.nextLine());
                             System.out.println("E-Mail");
                             empresa.setEmail(scanner.nextLine());
-                            System.out.println("Telefone");
-                            empresa.setTelefone(scanner.nextLine());
                             empresa.adicionar(empresa);
                             System.out.println("Cadastro efetuado com sucesso!");
                             break;
@@ -91,38 +84,16 @@ public class Main {
                      pessoaNova.setStack(scanner.nextLine());
                      System.out.println("Digite seu novo E-Mail:");
                      pessoaNova.setEmail(scanner.nextLine());
-                     System.out.println("Digite seu novo telefone:");
-                     pessoaNova.setTelefone(scanner.nextLine());
                      pessoa.editar(index, pessoaNova);
                      break;
                 case 4:
-                      System.out.println("Qual CV voc� deseja imprimir?");
-                      pessoa.listar();
-                      int index3 = scanner.nextInt();
-                      scanner.nextLine();
-                      pessoa.imprimir(index3, pessoaNova);
-                      break;
+                    System.out.println("Qual pessoa voc� deseja excluir?");
+                    pessoa.listar();
+                    int id = scanner.nextInt();
+                    pessoa.remover(id);
+                    break;
                 case 5:
-                      System.out.println("Qual CV voc� deseja editar?");
-                      pessoa.listar();
-                      int index2 = scanner.nextInt();
-                      scanner.nextLine();
-                      System.out.println("Digite seu novo :");
-                      pessoaNova.setCv(scanner.nextLine());
-                      pessoa.editarCV(index2, pessoaNova);
-                      break;
-                case 6:
-                      System.out.println("Qual pessoa voc� deseja excluir?");
-                      pessoa.listar();
-                      int id = scanner.nextInt();
-                      pessoa.remover(id);
-                      break;
-                case 7:
-                      /*System.out.println("Qual pessoa voc� deseja excluir?");
-                      pessoa.listar();
-                      int id = scanner.nextInt();
-                      pessoa.remover(id);*/
-                      break;
+                      //realizar postagem
                 case 9:
                       break;
                 default:
@@ -130,9 +101,7 @@ public class Main {
                       break;
             }
         }
-
     }
-
 }
 
 
