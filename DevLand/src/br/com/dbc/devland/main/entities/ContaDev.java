@@ -7,12 +7,16 @@ public class ContaDev extends Conta implements Impressao, Manipulacao<ContaDev> 
 
     private static String tipo = "DEV";
     private String cpf;
-    private String curriculo;
+    private String stack;
 
-    public ContaDev(Usuario usuario, String cpf, String curriculo) {
+    public ContaDev(){
+        super();
+    }
+
+    public ContaDev(Usuario usuario, String cpf, String stack) {
         super(usuario);
         this.cpf = cpf;
-        this.curriculo = curriculo;
+        this.stack = stack;
     }
 
     public static String getTipo() {
@@ -31,12 +35,12 @@ public class ContaDev extends Conta implements Impressao, Manipulacao<ContaDev> 
         this.cpf = cpf;
     }
 
-    public String getCurriculo() {
-        return curriculo;
+    public String getStack() {
+        return stack;
     }
 
-    public void setCurriculo(String curriculo) {
-        this.curriculo = curriculo;
+    public void setStack(String stack) {
+        this.stack = stack;
     }
 
     @Override
@@ -46,50 +50,42 @@ public class ContaDev extends Conta implements Impressao, Manipulacao<ContaDev> 
 
     @Override
     public void editar(Integer indice, ContaDev objeto) {
-        ContaDev devProcurado = (ContaDev) getListaContas().get(indice);
-        devProcurado.set(objeto.getTelefone());
-        devProcurado.setStack(objeto.getStack());
-        devProcurado.setEmail(objeto.getEmail());
-    }
-
-    public void editarCV(Integer indice, ContaDev objeto) {
-        ContaDev devProcurado = (ContaDev) getListaDeUser().get(indice);
-        if (objeto.cv == null) {
-            devProcurado.cv = getCv();
-        } else {
-            devProcurado.setCv(objeto.getCv());
-        }
+        ContaDev contaProcurada = (ContaDev) getListaContas().get(indice);
+        contaProcurada.setEmail(objeto.getEmail());
+        contaProcurada.setNome(objeto.getNome());
+        contaProcurada.setStack(objeto.getStack());
+        contaProcurada.setCpf(objeto.getCpf());
     }
 
     @Override
     public void remover(Integer indice) {
-        getListaDeUser().remove(indice.intValue());
+        getListaContas().remove(indice.intValue());
     }
 
     @Override
     public void listar() {
-        if (getListaDeUser().size() < 1){
+        if (getListaContas().size() < 1){
             System.out.println("Nenhum cadastro encontrado");
             System.exit(0);
         }else {
-            for (int i = 0; i < getListaDeUser().size(); i++) {
-                System.out.println("id=" + i + " | " + getListaDeUser().get(i));
+            for (int i = 0; i < getListaContas().size(); i++) {
+                System.out.println("id=" + i + " | " + getListaContas().get(i));
             }
         }
     }
 
     @Override
-    public String toString() {
-        return "Nome do Dev: " + getNome() + '\'' + " | " +
-                "E-Mail: " + getEmail() + '\'' + " | " +
-                "Telefone: " + getTelefone() + '\'' + " | " +
-                "CPF: " + cpf + '\'' + " | " +
-                "Stack: " + stack + '\'' + " | ";
+    public void imprimir() {
+        System.out.println(this);
     }
 
     @Override
-    public void imprimir(Integer indice, Object objeto) {
-        ContaDev devProcurado = (ContaDev) getListaDeUser().get(indice);
-        System.out.println("\nSeu curriculo \n-----------------\n" + devProcurado.getCv()+"\n");
+    public String toString() {
+        return "Dados do Usuário: \n" +
+                "Nome: " + getNome() + "\n" +
+                "E-Mail: " + getEmail() + "\n" +
+                "CPF: " + getCpf() + "\n" +
+                "Stack: " + getStack();
     }
+
 }
