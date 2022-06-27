@@ -1,26 +1,25 @@
 package br.com.dbc.devland.main.entities;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Postagem {
-    private User usuario;
-    private String titulo, texto;
 
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    String date = formatterData.format(now);
-
-    DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
-    String time = formatterHora.format(now);
+    private Integer id;
+    private String titulo;
+    private String descricao;
+    private Date data;
+    private Usuario usuario;
 
     public Postagem(){
-        super();
+        this.id = id;
     }
-    public Postagem(User usuario, String titulo, String texto) {
-        this.titulo = titulo;
-        this.texto = texto;
-        this.usuario = usuario;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -31,22 +30,35 @@ public class Postagem {
         this.titulo = titulo;
     }
 
-    public String getTexto() {
-        return texto;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public User getUsuario() {
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Usuario getUsuario() {
         return usuario;
     }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    @Override
     public String toString() {
         return "Autor: " + getUsuario().getNome() + "\n" +
-                "Data: " + date + "Hora: " + time + "\n" +
+                "Data: " + data + "\n" +
                 "Título: " + getTitulo() + "\n" +
-                "Texto: " + getTexto();
+                "Texto: " + getDescricao();
     }
 }

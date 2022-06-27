@@ -3,36 +3,57 @@ package br.com.dbc.devland.main.entities;
 import br.com.dbc.devland.main.interfaces.Impressao;
 import br.com.dbc.devland.main.interfaces.Manipulacao;
 
-public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
+public class ContaDev extends Conta implements Impressao, Manipulacao<ContaDev> {
+
     private static String tipo = "DEV";
-    private String cpf, stack, cv;
+    private String cpf;
+    private String curriculo;
 
-    public UserDev(String nome, String email, String telefone, String cpf, String stack, String cv) {
-        super(nome, email, telefone);
+    public ContaDev(Usuario usuario, String cpf, String curriculo) {
+        super(usuario);
         this.cpf = cpf;
-        this.stack = stack;
-        this.cv = cv;
+        this.curriculo = curriculo;
     }
 
-    public UserDev() {
-        super();
+    public static String getTipo() {
+        return tipo;
+    }
+
+    public static void setTipo(String tipo) {
+        ContaDev.tipo = tipo;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCurriculo() {
+        return curriculo;
+    }
+
+    public void setCurriculo(String curriculo) {
+        this.curriculo = curriculo;
     }
 
     @Override
-    public void adicionar(UserDev objeto) {
-        getListaDeUser().add(objeto);
+    public void adicionar(ContaDev objeto) {
+        getListaContas().add(objeto);
     }
 
     @Override
-    public void editar(Integer indice, UserDev objeto) {
-        UserDev devProcurado = (UserDev) getListaDeUser().get(indice);
-        devProcurado.setTelefone(objeto.getTelefone());
+    public void editar(Integer indice, ContaDev objeto) {
+        ContaDev devProcurado = (ContaDev) getListaContas().get(indice);
+        devProcurado.set(objeto.getTelefone());
         devProcurado.setStack(objeto.getStack());
         devProcurado.setEmail(objeto.getEmail());
     }
 
-    public void editarCV(Integer indice, UserDev objeto) {
-        UserDev devProcurado = (UserDev) getListaDeUser().get(indice);
+    public void editarCV(Integer indice, ContaDev objeto) {
+        ContaDev devProcurado = (ContaDev) getListaDeUser().get(indice);
         if (objeto.cv == null) {
             devProcurado.cv = getCv();
         } else {
@@ -57,30 +78,6 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
         }
     }
 
-    public String getCv() {
-        return cv;
-    }
-
-    public void setCv(String cv) {
-        this.cv = cv;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getStack() {
-        return stack;
-    }
-
-    public void setStack(String stack) {
-        this.stack = stack;
-    }
-
     @Override
     public String toString() {
         return "Nome do Dev: " + getNome() + '\'' + " | " +
@@ -92,7 +89,7 @@ public class UserDev extends User implements Impressao, Manipulacao<UserDev> {
 
     @Override
     public void imprimir(Integer indice, Object objeto) {
-        UserDev devProcurado = (UserDev) getListaDeUser().get(indice);
+        ContaDev devProcurado = (ContaDev) getListaDeUser().get(indice);
         System.out.println("\nSeu curriculo \n-----------------\n" + devProcurado.getCv()+"\n");
     }
 }

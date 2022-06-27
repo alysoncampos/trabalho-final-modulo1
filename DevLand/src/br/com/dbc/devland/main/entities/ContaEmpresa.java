@@ -3,28 +3,24 @@ package br.com.dbc.devland.main.entities;
 import br.com.dbc.devland.main.interfaces.Impressao;
 import br.com.dbc.devland.main.interfaces.Manipulacao;
 
-public class UserEmpresa extends User implements Manipulacao<UserEmpresa> {
+public class ContaEmpresa extends Conta implements Impressao, Manipulacao<ContaEmpresa> {
 
     private String cnpj;
 
-    public UserEmpresa(String nome, String email, String telefone, String cnpj) {
-        super(nome, email, telefone);
+    public ContaEmpresa(Usuario usuario, String cnpj) {
+        super(usuario);
         this.cnpj = cnpj;
     }
 
-    public UserEmpresa() {
-
+    @Override
+    public void adicionar(ContaEmpresa objeto) {
+        getListaContas().add(objeto);
     }
 
     @Override
-    public void adicionar(UserEmpresa objeto) {
-        getListaDeUser().add(objeto);
-    }
-
-    @Override
-    public void editar(Integer indice, UserEmpresa objeto) {
-        UserEmpresa empresaProcurada = (UserEmpresa) getListaDeUser().get(indice);
-        empresaProcurada.setNome(objeto.getNome());
+    public void editar(Integer indice, ContaEmpresa objeto) {
+        ContaEmpresa empresaProcurada = (ContaEmpresa) getListaContas().get(indice);
+        empresaProcurada.(objeto.getNome());
         empresaProcurada.setTelefone(objeto.getTelefone());
         empresaProcurada.setEmail(objeto.getEmail());
     }
@@ -65,4 +61,8 @@ public class UserEmpresa extends User implements Manipulacao<UserEmpresa> {
         this.cnpj = cnpj;
     }
 
+    @Override
+    public void imprimir(Integer indice, Object objeto) {
+
+    }
 }
