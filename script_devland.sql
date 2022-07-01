@@ -1,0 +1,85 @@
+CREATE TABLE Endereco(
+	id_endereco NUMBER(38) NOT NULL,
+	logradouro VARCHAR2(255) NOT NULL,
+	numero NUMBER(38) NOT NULL,
+	complemento VARCHAR2(100),
+	cep CHAR(9),
+	cidade VARCHAR2(50) NOT NULL,
+	estado VARCHAR2(50) NOT NULL,
+	pais VARCHAR2(50) NOT NULL,
+	PRIMARY KEY(id_endereco)
+);
+
+
+
+CREATE TABLE Usuario(
+	id_usuario NUMBER(38) NOT NULL,
+	id_endereco NUMBER(38) NOT NULL,
+	nome VARCHAR2(255) NOT NULL,
+	email VARCHAR2(255) NOT NULL,
+	tipo VARCHAR2(15) NOT NULL
+	PRIMARY KEY(id_usuario),
+	CONSTRAINT fk_id_endereco FOREIGN KEY (id_endereco) REFERENCES(id_endereco)
+);
+
+
+
+CREATE TABLE Usuario_Dev(
+	id_usuario_dev NUMBER(38) NOT NULL,
+	id_usuario NUMBER(38) NOT NULL,
+	stack VARCHAR2(100) NOT NULL,
+	PRIMARY KEY(id_usuario_dev),
+	CONSTRAINTS fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES(id_usuario) 
+);
+
+
+
+CREATE TABLE Usuario_Empresa(
+	id_usuario_empresa NUMBER(38) NOT NULL,
+	id_usuario NUMBER(38) NOT NULL,
+	area_de_atuacao VARCHAR2(100) NOT NULL,
+	PRIMARY KEY(id_usuario_empresa),
+	CONSTRAINTS fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES(id_usuario)
+);
+
+
+
+CREATE TABLE Postagem(
+	id_postagem NUMBER(38) NOT NULL,
+	id_usuario NUMBER(38) NOT NULL,
+	titulo VARCHAR2(255) NOT NULL,
+	descricao VARCHAR2(500) NOT NULL,
+	PRIMARY KEY(id_postagem)
+	CONSTRAINTS fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES(id_usuario)
+);
+
+
+
+CREATE SEQUENCE SEQ_ENDERECO
+START WITH 1
+INCREMENT BY 1
+NOCACHE NOCYCLE;
+
+
+CREATE SEQUENCE SEQ_USUARIO
+START WITH 1
+INCREMENT BY 1
+NOCACHE NOCYCLE;
+
+
+CREATE SEQUENCE SEQ_USUARIO_DEV
+START WITH 1
+INCREMENT BY 1
+NOCACHE NOCYCLE;
+
+
+CREATE SEQUENCE SEQ_USUARIO_EMPRESA
+START WITH 1
+INCREMENT BY 1
+NOCACHE NOCYCLE;
+
+
+CREATE SEQUENCE SEQ_POSTAGEM
+START WITH 1
+INCREMENT BY 1
+NOCACHE NOCYCLE;
