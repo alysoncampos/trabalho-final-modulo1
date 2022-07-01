@@ -7,19 +7,17 @@ CREATE TABLE Endereco(
 	cidade VARCHAR2(50) NOT NULL,
 	estado VARCHAR2(50) NOT NULL,
 	pais VARCHAR2(50) NOT NULL,
-	PRIMARY KEY(id_endereco)
+	PRIMARY KEY (id_endereco)
 );
-
-
 
 CREATE TABLE Usuario(
 	id_usuario NUMBER(38) NOT NULL,
 	id_endereco NUMBER(38) NOT NULL,
 	nome VARCHAR2(255) NOT NULL,
 	email VARCHAR2(255) NOT NULL,
-	tipo VARCHAR2(15) NOT NULL
-	PRIMARY KEY(id_usuario),
-	CONSTRAINT fk_id_endereco FOREIGN KEY (id_endereco) REFERENCES(id_endereco)
+	tipo VARCHAR2(15) NOT NULL,
+	PRIMARY KEY (id_usuario),
+	CONSTRAINT fk_id_endereco FOREIGN KEY (id_endereco) REFERENCES Endereco (id_endereco)
 );
 
 
@@ -29,7 +27,7 @@ CREATE TABLE Usuario_Dev(
 	id_usuario NUMBER(38) NOT NULL,
 	stack VARCHAR2(100) NOT NULL,
 	PRIMARY KEY(id_usuario_dev),
-	CONSTRAINTS fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES(id_usuario) 
+	CONSTRAINTS fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) 
 );
 
 
@@ -39,7 +37,7 @@ CREATE TABLE Usuario_Empresa(
 	id_usuario NUMBER(38) NOT NULL,
 	area_de_atuacao VARCHAR2(100) NOT NULL,
 	PRIMARY KEY(id_usuario_empresa),
-	CONSTRAINTS fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES(id_usuario)
+	CONSTRAINTS fk_id_usuario2 FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario)
 );
 
 
@@ -49,8 +47,8 @@ CREATE TABLE Postagem(
 	id_usuario NUMBER(38) NOT NULL,
 	titulo VARCHAR2(255) NOT NULL,
 	descricao VARCHAR2(500) NOT NULL,
-	PRIMARY KEY(id_postagem)
-	CONSTRAINTS fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES(id_usuario)
+	PRIMARY KEY(id_postagem),
+	CONSTRAINTS fk_id_usuario_postagem FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario)
 );
 
 
@@ -83,3 +81,52 @@ CREATE SEQUENCE SEQ_POSTAGEM
 START WITH 1
 INCREMENT BY 1
 NOCACHE NOCYCLE;
+
+INSERT INTO USUARIO 
+(ID_USUARIO, TIPO, NOME, EMAIL, ID_ENDERECO)
+VALUES (SEQ_USUARIO.nextval, 'DEV', 'Cesar', 'cesar@teste.com', 1)
+
+INSERT INTO USUARIO 
+(ID_USUARIO, TIPO, NOME, EMAIL, ID_ENDERECO)
+VALUES (SEQ_USUARIO.nextval, 'DEV', 'Alyson', 'alyson@teste.com', 2)
+
+INSERT INTO USUARIO 
+(ID_USUARIO, TIPO, NOME, EMAIL, ID_ENDERECO)
+VALUES (SEQ_USUARIO.nextval, 'EMPRESA', 'DBC', 'dbc@teste.com', 3)
+
+INSERT INTO USUARIO_DEV  
+(ID_USUARIO_DEV, ID_USUARIO, STACK)
+VALUES (SEQ_USUARIO_DEV.nextval, 1,'Java')
+
+INSERT INTO USUARIO_DEV  
+(ID_USUARIO_DEV, ID_USUARIO, STACK)
+VALUES (SEQ_USUARIO_DEV.nextval, 2,'Java')
+
+INSERT INTO USUARIO_EMPRESA  
+(ID_USUARIO_EMPRESA, ID_USUARIO, AREA_DE_ATUACAO)
+VALUES (SEQ_USUARIO_EMPRESA.nextval, 3,'Desenvolvimento de Software')
+
+INSERT INTO ENDERECO  
+(ID_ENDERECO, LOGRADOURO , NUMERO, COMPLEMENTO, CEP, CIDADE, ESTADO, PAIS)
+VALUES (SEQ_ENDERECO.nextval, 'Rua do Teste','1', 'Casa', '11111-111', 'Cidade do Teste', 'Estado do Teste', 'País do Teste')
+
+INSERT INTO ENDERECO  
+(ID_ENDERECO, LOGRADOURO , NUMERO, COMPLEMENTO, CEP, CIDADE, ESTADO, PAIS)
+VALUES (SEQ_ENDERECO.nextval, 'Rua do Teste 2','2', 'Apto', '22222-222', 'Cidade do Teste 2', 'Estado do Teste 2', 'País do Teste 2')
+
+INSERT INTO ENDERECO  
+(ID_ENDERECO, LOGRADOURO , NUMERO, COMPLEMENTO, CEP, CIDADE, ESTADO, PAIS)
+VALUES (SEQ_ENDERECO.nextval, 'Rua do Teste 3','3', 'Casa', '33333-333', 'Cidade do Teste 3', 'Estado do Teste 3', 'País do Teste 3')
+
+INSERT INTO POSTAGEM  
+(ID_POSTAGEM, ID_USUARIO  , TITULO , DESCRICAO)
+VALUES (SEQ_POSTAGEM.nextval, 1 , 'Titulo 1', 'Mensagem 1')
+
+INSERT INTO POSTAGEM  
+(ID_POSTAGEM, ID_USUARIO  , TITULO , DESCRICAO)
+VALUES (SEQ_POSTAGEM.nextval, 2 , 'Titulo 2', 'Mensagem 2')
+
+INSERT INTO POSTAGEM  
+(ID_POSTAGEM, ID_USUARIO  , TITULO , DESCRICAO)
+VALUES (SEQ_POSTAGEM.nextval, 3 , ' VemSer DBC', 'Programa de Formação nas Principais Tecnologias')
+
