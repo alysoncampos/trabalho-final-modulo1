@@ -2,6 +2,7 @@ package br.com.dbc.devland.main.service;
 
 import br.com.dbc.devland.main.exceptions.BancoDeDadosException;
 import br.com.dbc.devland.main.model.Postagem;
+import br.com.dbc.devland.main.model.TemaPostagem;
 import br.com.dbc.devland.main.repository.PostagemRepository;
 
 import java.util.List;
@@ -14,9 +15,9 @@ public class PostagemService {
         postagemRepository = new PostagemRepository();
     }
 
-    public void adicionarPostagem(Postagem postagem) {
+    public void adicionar(Postagem postagem) {
         try{
-            // Validacoes da postagem
+             //Validacoes da postagem
             if(postagem.getTitulo() == null || postagem.getTitulo().length() < 5
                     || postagem.getTitulo().length() > 100){
                 throw new Exception("Atributo título é obrigatório e deve ter no mínimo 5 e no máximo 100 caracteres.");
@@ -70,11 +71,19 @@ public class PostagemService {
         }
     }
 
-    public void listarPostagemPorCodigodaPessoa(Integer idPessoa){
-        try {
-            postagemRepository.listarContatosPorPessoa(idPessoa).forEach(System.out::println);
-        } catch (BancoDeDadosException e){
-            e.printStackTrace();
-        }
-    }
+//    public void listarPostagemPorPessoa(Integer idPessoa){
+//        try {
+//            postagemRepository.listarPo(idPessoa).forEach(System.out::println);
+//        } catch (BancoDeDadosException e){
+//            e.printStackTrace();
+//        }
+//    }
+
+//    public void listarPorTema(Integer tema){
+//        try {
+//            postagemRepository.listarPorTema(tema).forEach(System.out::println);
+//        } catch (BancoDeDadosException e){
+//            e.printStackTrace();
+//        }
+//    }
 }

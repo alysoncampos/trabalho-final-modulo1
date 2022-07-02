@@ -38,17 +38,17 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
             postagem.setIdPostagem(proximoId);
 
             String sql = "INSERT INTO POSTAGEM\n" +
-                    "(ID_POSTAGEM, ID_USUARIO, TEMA, TITULO, DESCRICAO, DATA)\n" +
-                    "VALUES(?, ?, ?, ?, ?, ?)\n";
+                    "(ID_POSTAGEM, TITULO, DESCRICAO, TIPO)\n" +
+                    "VALUES(?, ?, ?, ?)\n";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
             stmt.setInt(1, postagem.getIdPostagem());
-            stmt.setInt(2, postagem.getUsuario().getIdUsuario());
-            stmt.setInt(3, postagem.getTemaPostagem().getTema());
-            stmt.setString(4, postagem.getTitulo());
-            stmt.setString(5, postagem.getDescricao());
-            stmt.setDate(6, postagem.getData());
+            //stmt.setInt(2, postagem.getUsuario().getIdUsuario());
+            stmt.setString(2, postagem.getTitulo());
+            stmt.setString(3, postagem.getDescricao());
+            stmt.setInt(4, postagem.getTemaPostagem().getTema());
+            //stmt.setDate(5, postagem.getData());
 
             int res = stmt.executeUpdate();
             System.out.println("adicionarPostagem.res=" + res);
@@ -142,50 +142,10 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
             con = ConexaoBancoDeDados.getConnection();
             Statement stmt = con.createStatement();
 
-            //ESTUDAR
-            String sql = "SELECT P.*" +
-                    "            U.USUARIO AS NOME" +
-                    "       FROM POSTAGEM P" +
-                    "  LEFT JOIN USUARIO U ON (U.ID_USUARIO = P.ID_USUARIO)";
+            String sql = "SELECT * FROM POSTAGEM";
 
             // Executa-se a consulta
             ResultSet res = stmt.executeQuery(sql);
-
-            while (res.next()) {
-                Postagem postagem = getPostagemFromResultSet(res);
-                postagens.add(postagem);
-            }
-        } catch (SQLException e) {
-            throw new BancoDeDadosException(e.getCause());
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return postagens;
-    }
-
-    public List<Postagem> listarContatosPorPessoa(Integer idPessoa) throws BancoDeDadosException {
-        List<Postagem> postagens = new ArrayList<>();
-        Connection con = null;
-        try {
-            con = ConexaoBancoDeDados.getConnection();
-
-            String sql = "SELECT P.*, " +
-                    "            U.NOME AS NOME_USUARIO " +
-                    "       FROM POSTAGEM P " +
-                    " INNER JOIN USUARIO U ON (P.ID_USUARIO = C.ID_USUARIO) " +
-                    "      WHERE P.ID_USUARIO = ? ";
-
-            // Executa-se a consulta
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, idPessoa);
-
-            ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
                 Postagem postagem = getPostagemFromResultSet(res);
@@ -205,14 +165,85 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
         }
     }
 
+//    public List<Postagem> listarPostagemPorPessoa(Integer idPessoa) throws BancoDeDadosException {
+//        List<Postagem> postagens = new ArrayList<>();
+//        Connection con = null;
+//        try {
+//            con = ConexaoBancoDeDados.getConnection();
+//
+//            String sql = "SELECT P.*, " +
+//                    "            U.NOME AS NOME_USUARIO " +
+//                    "       FROM POSTAGEM P " +
+//                    " INNER JOIN USUARIO U ON (P.ID_USUARIO = C.ID_USUARIO) " +
+//                    "      WHERE P.ID_USUARIO = ? ";
+//
+//            // Executa-se a consulta
+//            PreparedStatement stmt = con.prepareStatement(sql);
+//            stmt.setInt(1, idPessoa);
+//
+//            ResultSet res = stmt.executeQuery();
+//
+//            while (res.next()) {
+//                Postagem postagem = getPostagemFromResultSet(res);
+//                postagens.add(postagem);
+//            }
+//            return postagens;
+//        } catch (SQLException e) {
+//            throw new BancoDeDadosException(e.getCause());
+//        } finally {
+//            try {
+//                if (con != null) {
+//                    con.close();
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
+
+//    public List<Postagem> listarPorTema(Integer tema) throws BancoDeDadosException {
+//        List<Postagem> postagensTema = new ArrayList<>();
+//        Connection con = null;
+//
+//        try{
+//            con = ConexaoBancoDeDados.getConnection();
+//
+//            String sql = "SELECT * " +
+//                    "       FROM POSTAGEM " +
+//                    "      WHERE TIPO = ?";
+//
+//            PreparedStatement stmt = con.prepareStatement(sql);
+//            stmt.setInt(1, tema);
+//
+//            ResultSet res = stmt.executeQuery(sql);
+//
+//            while (res.next()) {
+//                Postagem postagem = getPostagemFromResultSet(res);
+//                postagensTema.add(postagem);
+//            }
+//            return postagensTema;
+//        } catch (SQLException e) {
+//            throw new BancoDeDadosException(e.getCause());
+//        } finally {
+//            try {
+//                if (con != null) {
+//                    con.close();
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
     private Postagem getPostagemFromResultSet(ResultSet res) throws SQLException {
-        Postagem postagem = new Postagem;
+        Postagem postagem = new Postagem();
         postagem.setIdPostagem(res.getInt("id_postagem"));
-        Usuario usuario = new Usuario();
-        usuario.setNome(res.getString("nome_usuario"));
-        usuario.setIdUsuario(res.getInt("id_pessoa"));
-        postagem.setUsuario(usuario);
-        postagem.setTemaPostagem(TemaPostagem.ofTema(res.getInt("tema")));
+//        Usuario usuario = new Usuario();
+//        usuario.setNome(res.getString("nome_usuario"));
+//        usuario.setIdUsuario(res.getInt("id_usuario"));
+//        postagem.setUsuario(usuario);
+        postagem.setTemaPostagem(TemaPostagem.ofTema(res.getInt("tipo")));
         postagem.setTitulo(res.getString("titulo"));
         postagem.setDescricao(res.getString("descricao"));
         return postagem;

@@ -18,9 +18,9 @@ public enum TemaPostagem {
     }
 
     public static TemaPostagem ofTema(Integer tema){ // 1
-        return Arrays.stream(TemaPostagem.values()) //[RESIDENCIAL(1) , COMERCIAL(2)]
-                .filter(t -> t.getTema().equals(tema)) //[RESIDENCIAL(1)]
-                .findFirst() //optional => RESIDENCIAL(1)
-                .get();//RESIDENCIAL(1)
+        return Arrays.stream(TemaPostagem.values()) //[VAGAS(1) , PROGRAMAS(2), PENSAMENTOS(3)]
+                .filter(t -> t.getTema().equals(tema)) //[VAGAS(1)]
+                .findFirst() //optional => VAGAS(1)
+                .get();//VAGAS(1)
     }
 }

@@ -6,11 +6,11 @@ import java.sql.Date;
 public class Postagem {
 
     private Integer idPostagem;
-    private TemaPostagem temaPostagem; // 1-VAGAS 2-PROGRAMAS 3-PENSAMENTOS
+    private TemaPostagem temaPostagem; // VAGAS(1) PROGRAMAS(2) PENSAMENTOS(3)
     private String titulo;
     private String descricao;
     private Date data = new java.sql.Date(System.currentTimeMillis());
-    private Usuario usuario;
+    //private Usuario usuario;
 
     public Integer getIdPostagem() {
         return idPostagem;
@@ -52,13 +52,13 @@ public class Postagem {
         this.data = data;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+//    public Usuario getUsuario() {
+//        return usuario;
+//    }
+//
+//    public void setUsuario(Usuario usuario) {
+//        this.usuario = usuario;
+//    }
 
     @Override
     public String toString() {
