@@ -2,7 +2,6 @@ package br.com.dbc.devland.main.service;
 
 import br.com.dbc.devland.main.exceptions.BancoDeDadosException;
 import br.com.dbc.devland.main.model.Postagem;
-import br.com.dbc.devland.main.model.TemaPostagem;
 import br.com.dbc.devland.main.repository.PostagemRepository;
 
 import java.util.List;
@@ -79,11 +78,11 @@ public class PostagemService {
 //        }
 //    }
 
-//    public void listarPorTema(Integer tema){
-//        try {
-//            postagemRepository.listarPorTema(tema).forEach(System.out::println);
-//        } catch (BancoDeDadosException e){
-//            e.printStackTrace();
-//        }
-//    }
+    public void listarPorTipo(Integer tipo){
+        try {
+            postagemRepository.listarPorTipo(tipo).forEach(System.out::println);
+        } catch (BancoDeDadosException e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -2,7 +2,7 @@ package br.com.dbc.devland.main.repository;
 
 import br.com.dbc.devland.main.exceptions.BancoDeDadosException;
 import br.com.dbc.devland.main.model.Postagem;
-import br.com.dbc.devland.main.model.TemaPostagem;
+import br.com.dbc.devland.main.model.TipoPostagem;
 import br.com.dbc.devland.main.model.Usuario;
 
 import java.sql.*;
@@ -21,7 +21,6 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
             if (res.next()) {
                 return res.getInt("mysequence");
             }
-
             return null;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
@@ -38,17 +37,17 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
             postagem.setIdPostagem(proximoId);
 
             String sql = "INSERT INTO POSTAGEM\n" +
-                    "(ID_POSTAGEM, TITULO, DESCRICAO, TIPO)\n" +
-                    "VALUES(?, ?, ?, ?)\n";
+                    "(ID_POSTAGEM, TIPO, TITULO, DESCRICAO, DATA_POSTAGEM)\n" +
+                    "VALUES(?, ?, ?, ?, ?)\n";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
             stmt.setInt(1, postagem.getIdPostagem());
+            stmt.setInt(2, postagem.getTipoPostagem().getTipo());
             //stmt.setInt(2, postagem.getUsuario().getIdUsuario());
-            stmt.setString(2, postagem.getTitulo());
-            stmt.setString(3, postagem.getDescricao());
-            stmt.setInt(4, postagem.getTemaPostagem().getTema());
-            //stmt.setDate(5, postagem.getData());
+            stmt.setString(3, postagem.getTitulo());
+            stmt.setString(4, postagem.getDescricao());
+            stmt.setDate(5, postagem.getData());
 
             int res = stmt.executeUpdate();
             System.out.println("adicionarPostagem.res=" + res);
@@ -76,9 +75,8 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
-            stmt.setInt(1, id);
+            stmt.setInt(1,id);
 
-            // Executa-se a consulta
             int res = stmt.executeUpdate();
             System.out.println("removerPostagemPorId.res=" + res);
 
@@ -104,19 +102,23 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
 
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE POSTAGEM SET ");
-            sql.append(" tipo = ?,");
-            sql.append(" titulo = ?,");
-            sql.append(" descricao = ? ");
+            if(postagem.getTipoPostagem() != null){
+                sql.append(" tipo = ?,");}
+            if(postagem.getTitulo() != null){
+                sql.append(" titulo = ?,");
+            }
+            if(postagem.getDescricao() != null){
+                sql.append(" descricao = ? ");
+            }
             sql.append(" WHERE id_postagem = ? ");
 
             PreparedStatement stmt = con.prepareStatement(sql.toString());
 
-            stmt.setInt(1, postagem.getTemaPostagem().getTema());
+            stmt.setInt(1, postagem.getTipoPostagem().getTipo());
             stmt.setString(2, postagem.getTitulo());
             stmt.setString(3, postagem.getDescricao());
             stmt.setInt(4, id);
 
-            // Executa-se a consulta
             int res = stmt.executeUpdate();
             System.out.println("editarPostagem.res=" + res);
 
@@ -144,7 +146,6 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
 
             String sql = "SELECT * FROM POSTAGEM";
 
-            // Executa-se a consulta
             ResultSet res = stmt.executeQuery(sql);
 
             while (res.next()) {
@@ -202,27 +203,27 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
 //    }
 
 
-//    public List<Postagem> listarPorTema(Integer tema) throws BancoDeDadosException {
-//        List<Postagem> postagensTema = new ArrayList<>();
+//    public List<Postagem> listarPorTipo(Integer tipo) throws BancoDeDadosException {
+//        List<Postagem> postagens = new ArrayList<>();
 //        Connection con = null;
 //
 //        try{
 //            con = ConexaoBancoDeDados.getConnection();
 //
-//            String sql = "SELECT * " +
-//                    "       FROM POSTAGEM " +
-//                    "      WHERE TIPO = ?";
+//            String sql = "SELECT P.* " +
+//                    "       FROM POSTAGEM P" +
+//                    "      WHERE P.TIPO = ? ";
 //
 //            PreparedStatement stmt = con.prepareStatement(sql);
-//            stmt.setInt(1, tema);
+//            stmt.setInt(1, tipo);
 //
 //            ResultSet res = stmt.executeQuery(sql);
 //
 //            while (res.next()) {
 //                Postagem postagem = getPostagemFromResultSet(res);
-//                postagensTema.add(postagem);
+//                postagens.add(postagem);
 //            }
-//            return postagensTema;
+//            return postagens;
 //        } catch (SQLException e) {
 //            throw new BancoDeDadosException(e.getCause());
 //        } finally {
@@ -243,7 +244,7 @@ public class PostagemRepository implements Repositorio<Integer, Postagem>{
 //        usuario.setNome(res.getString("nome_usuario"));
 //        usuario.setIdUsuario(res.getInt("id_usuario"));
 //        postagem.setUsuario(usuario);
-        postagem.setTemaPostagem(TemaPostagem.ofTema(res.getInt("tipo")));
+        postagem.setTipoPostagem(TipoPostagem.ofTema(res.getInt("tipo")));
         postagem.setTitulo(res.getString("titulo"));
         postagem.setDescricao(res.getString("descricao"));
         return postagem;

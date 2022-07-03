@@ -6,7 +6,7 @@ import java.sql.Date;
 public class Postagem {
 
     private Integer idPostagem;
-    private TemaPostagem temaPostagem; // VAGAS(1) PROGRAMAS(2) PENSAMENTOS(3)
+    private TipoPostagem tipo; // VAGAS(1) PROGRAMAS(2) PENSAMENTOS(3)
     private String titulo;
     private String descricao;
     private Date data = new java.sql.Date(System.currentTimeMillis());
@@ -20,12 +20,12 @@ public class Postagem {
         this.idPostagem = idPostagem;
     }
 
-    public TemaPostagem getTemaPostagem() {
-        return temaPostagem;
+    public TipoPostagem getTipoPostagem() {
+        return tipo;
     }
 
-    public void setTemaPostagem(TemaPostagem temaPostagem) {
-        this.temaPostagem = temaPostagem;
+    public void setTipoPostagem(TipoPostagem tipo) {
+        this.tipo = tipo;
     }
 
     public String getTitulo() {
@@ -66,7 +66,7 @@ public class Postagem {
                 "idPostagem=" + idPostagem +
                 //", idUsuario=" + (usuario != null ? usuario.getIdUsuario() : null) +
                 //", nomeUsuario=" + (usuario != null ? usuario.getNome() : null) +
-                ", tema=" + temaPostagem +
+                ", tipo=" + tipo +
                 ", titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", data=" + data +
