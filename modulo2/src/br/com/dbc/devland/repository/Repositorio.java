@@ -1,6 +1,6 @@
-package br.com.dbc.devland.main.repository;
+package br.com.dbc.devland.repository;
 
-import br.com.dbc.devland.main.exceptions.BancoDeDadosException;
+import br.com.dbc.devland.exceptions.BancoDeDadosException;
 
 import java.sql.Connection;
 import java.sql.SQLException;

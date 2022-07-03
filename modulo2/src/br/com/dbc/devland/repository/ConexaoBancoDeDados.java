@@ -1,4 +1,4 @@
-package br.com.dbc.devland.main.repository;
+package br.com.dbc.devland.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

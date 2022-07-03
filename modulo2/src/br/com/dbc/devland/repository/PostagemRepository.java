@@ -1,9 +1,8 @@
-package br.com.dbc.devland.main.repository;
+package br.com.dbc.devland.repository;
 
-import br.com.dbc.devland.main.exceptions.BancoDeDadosException;
-import br.com.dbc.devland.main.model.Postagem;
-import br.com.dbc.devland.main.model.TemaPostagem;
-import br.com.dbc.devland.main.model.Usuario;
+import br.com.dbc.devland.exceptions.BancoDeDadosException;
+import br.com.dbc.devland.model.Postagem;
+import br.com.dbc.devland.model.TemaPostagem;
 
 import java.sql.*;
 import java.util.ArrayList;

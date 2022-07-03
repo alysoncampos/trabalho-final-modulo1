@@ -1,4 +1,4 @@
-package br.com.dbc.devland.main.view;
+package br.com.dbc.devland.view;
 
 import br.com.dbc.devland.main.entities.Endereco;
 import br.com.dbc.devland.main.entities.UsuarioDev;
