@@ -1,174 +1,246 @@
 package br.com.dbc.devland.view;
 
-import br.com.dbc.devland.main.entities.Endereco;
-import br.com.dbc.devland.main.entities.UsuarioDev;
-import br.com.dbc.devland.main.entities.UsuarioEmpresa;
+import br.com.dbc.devland.model.*;
+import br.com.dbc.devland.service.ContatoService;
+import br.com.dbc.devland.service.EnderecoService;
+import br.com.dbc.devland.service.LoginService;
+import br.com.dbc.devland.service.UsuarioDevService;
 
+
+import javax.swing.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Scanner;
 
+
+
 public class Main {
     public static void main(String[] args) {
+
         Locale.setDefault(Locale.US);
+
         Scanner scanner = new Scanner(System.in);
 
-        String titulo;
-        String texto;
+        System.out.println("""
+                
+                                
+                __________________________________
+                |     DEVLAND - SOCIAL NETWORK   |
+                |   __________________________   |
+                |   |                        |   |
+                |   |           </>          |   |
+                |   |                        |   |_____
+                |   |________________________|   |     |
+                |________________________________|     |
+                               ****                    |
+                              ******                   |
+                 |==============================|    __|__
+                 | Q  W  E  R  T  Y  U  I  O  P |    | | |
+                 | A  S  D  F  G  H  J  K  L  Ç |    |___|
+                 | Z  X  C  V  B  N  M  ,  .  ; |
+                 |==============================|
+                """);
 
-        Endereco endereco = new Endereco();
-        Endereco endereco2 = new Endereco("Rua Oliveira Fonseca", "254", "Recife", "Pernambuco", "Brasil");
-        Endereco endereco3 = new Endereco("Av. Chico Mendes", "189", "São Paulo", "São Paulo", "Brasil");
+        UsuarioDevService usuarioDevService = new UsuarioDevService();
+        ContatoService contatoService = new ContatoService();
+        EnderecoService enderecoService = new EnderecoService();
 
-        UsuarioDev usuarioDev = new UsuarioDev();
-        UsuarioDev usuarioDev2 = new UsuarioDev("Alyson Campos", "alyson@gmail.com", endereco2, "Backend");
-        UsuarioDev usuarioDev3 = new UsuarioDev("Cesar Bandeira", "cesar@gmail.com", endereco3, "Backend");
-
-        usuarioDev2.adicionar(usuarioDev2);
-        usuarioDev3.adicionar(usuarioDev3);
-
-        usuarioDev2.publicar(usuarioDev2, "Eu sou um titulo","Eu sou uma mensagem");
-        usuarioDev3.publicar(usuarioDev3, "Eu sou um titulo2","Eu sou uma mensagem2");
-
-        UsuarioEmpresa usuarioEmpresa = new UsuarioEmpresa();
-        UsuarioEmpresa empresaNova = new UsuarioEmpresa();
-        int opcao;
-        System.out.println("Seja Bem-Vindo à DevLand - O mundo Dev é aqui");
-        opcao = 0;
-        while (opcao != 9) {
-            System.out.println("Digite 1 para criar usuário");
-            System.out.println("Digite 2 para listar usuários");
-            System.out.println("Digite 3 para editar usuário");
-            System.out.println("Digite 4 para excluir usuario");
-            System.out.println("Digite 5 para realizar uma postagem");
-            System.out.println("Digite 6 para excluir uma postagem");
-            System.out.println("Digite 7 para listar postagens");
-            System.out.println("Digite 9 para sair");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+        String opcao = "";
+        while (!opcao.equals("99")) {
+            System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "Você deseja realizar um Cadastro ou um Login?" +
+                    ConsoleColors.YELLOW_BOLD_BRIGHT + "\n\n1-Cadastro de Desenvolvedor\n2-Cadastro de Empresa\n3-Login" +
+                    ConsoleColors.RESET);
+            opcao = scanner.nextLine();
             switch (opcao) {
-                case 1:
-                    System.out.println("Digite o tipo da conta: ");
-                    System.out.println("1. Dev");
-                    System.out.println("2. Empresa");
-                    System.out.print(">> ");
-                    int tipoConta = scanner.nextInt();
+                case "1" -> {
+                    UsuarioDev usuarioDev = new UsuarioDev();
+                    Contato contatoDev = new Contato();
+                    Endereco enderecoDev = new Endereco();
+
+
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o seu nome?");
+                    usuarioDev.setNome(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o seu E-Mail?");
+                    usuarioDev.setEmail(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o seu CPF?");
+                    usuarioDev.setCpf(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual sua Stack?");
+                    usuarioDev.setStack(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o seu Telefone?");
+                    contatoDev.setNumero(scanner.nextLine());
+                    System.out.println("Digite o tipo (1-RESIDENCIAL 2-COMERCIAL): ");
+                    int tipo = scanner.nextInt();
+                    TipoEnum tipoContato = TipoEnum.ofTipo(tipo);
+                    contatoDev.setTipoEnum(tipoContato);
                     scanner.nextLine();
-                    switch (tipoConta) {
-                        case 1:
-                            usuarioDev = new UsuarioDev();
-                            endereco = new Endereco();
-                            System.out.println("Olá, Dev! Preencha o cadastro: ");
-                            System.out.println("Nome: ");
-                            usuarioDev.setNome(scanner.nextLine());
-                            System.out.println("Email: ");
-                            usuarioDev.setEmail(scanner.nextLine());
-                            System.out.println("Stack: ");
-                            usuarioDev.setStack(scanner.nextLine());
-                            System.out.println("Rua: ");
-                            endereco.setLogradouro(scanner.nextLine());
-                            System.out.println("Numero: ");
-                            endereco.setNumero(scanner.nextLine());
-                            System.out.println("Cidade: ");
-                            endereco.setCidade(scanner.nextLine());
-                            System.out.println("Estado: ");
-                            endereco.setEstado(scanner.nextLine());
-                            System.out.println("País: ");
-                            endereco.setPais(scanner.nextLine());
-                            usuarioDev.setEndereco(endereco);
-                            usuarioDev.adicionar(usuarioDev);
-                            System.out.println("Cadastro efetuado com sucesso!");
-                            break;
-                        case 2 :
-                            usuarioEmpresa = new UsuarioEmpresa();
-                            endereco = new Endereco();
-                            System.out.println("Olá, empresa parceira! Preencha o cadastro: ");
-                            System.out.print("Nome: ");
-                            usuarioEmpresa.setNome(scanner.nextLine());
-                            System.out.print("Email: ");
-                            usuarioEmpresa.setEmail(scanner.nextLine());
-                            System.out.print("Area de Atuação: ");
-                            usuarioEmpresa.setAreaDeAtuacao(scanner.nextLine());
-                            System.out.print("Rua: ");
-                            endereco.setLogradouro(scanner.nextLine());
-                            System.out.print("Numero: ");
-                            endereco.setNumero(scanner.nextLine());
-                            scanner.nextLine();
-                            System.out.print("Cidade: ");
-                            endereco.setCidade(scanner.nextLine());
-                            System.out.print("Estado: ");
-                            endereco.setEstado(scanner.nextLine());
-                            System.out.print("País: ");
-                            endereco.setPais(scanner.nextLine());
-                            usuarioEmpresa.setEndereco(endereco);
-                            usuarioEmpresa.adicionar(usuarioEmpresa);
-                            System.out.println("Cadastro efetuado com sucesso!");
-                            break;
-                        default:
-                            System.out.println("Opção inválida!");
-                            break;
+                    System.out.println(ConsoleColors.PURPLE_BOLD + "\nAgora vamos cadastrar o seu Endereço!\n");
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Digite o seu Logradouro (rua/av./etc.)");
+                    enderecoDev.setLogradouro(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o número?");
+                    enderecoDev.setNumero(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o complemento?");
+                    enderecoDev.setComplemento(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o seu CEP?");
+                    enderecoDev.setCep(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual a sua cidade?");
+                    enderecoDev.setCidade(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o seu Estado?");
+                    enderecoDev.setEstado(scanner.nextLine());
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Qual o seu País?");
+                    enderecoDev.setPais(scanner.nextLine());
+                    System.out.println(ConsoleColors.PURPLE_BOLD + "\nUfa!!!! Estamos Acabando, por fim... Digite uma senha\n");
+                    System.out.println(ConsoleColors.WHITE_BOLD + "Senha:");
+                    usuarioDev.setSenha(scanner.nextLine());
+
+                    enderecoService.adicionarEndereco(enderecoDev);
+                    usuarioDevService.adicionarDev(usuarioDev);
+                    contatoService.adicionarContato(contatoDev);
+                }
+                case "3" -> {
+                    try {
+                        //Verificar, só esta puxando CPF por enquanto
+                        System.out.println(ConsoleColors.BLUE_BOLD + "CPF ou CNPJ");
+                        String login = scanner.nextLine();
+
+                        System.out.println(ConsoleColors.BLUE_BOLD + "Senha");
+                        String senha = scanner.nextLine();
+
+                        UsuarioDev objLoginDev = new UsuarioDev();
+
+                        objLoginDev.setCpf(login);
+                        objLoginDev.setSenha(senha);
+
+                        LoginService objLoginService = new LoginService();
+                        ResultSet rs = objLoginService.autenticacaoDev(objLoginDev);
+
+                        if (rs.next()) {
+                            //tela que eu quero abrir
+                            System.out.println("Logado com sucesso! Seja Bem-Vindo");
+                            String opcaoLoginDev = "";
+                            while (!opcaoLoginDev.equals("99")) {
+                                System.out.println("\nO que você gostaria de fazer hoje?\n\n1-Realizar uma Postagem\n2-Editar Cadastro\n3-Excluir Cadastro\n99-Deslogar");
+                                opcaoLoginDev = scanner.nextLine();
+                                switch (opcaoLoginDev) {
+                                    case "1" -> {
+                                        //tudo relacionado a postagem aqui
+                                    }
+                                    case "2" -> {
+                                        String opcaoEditarDev = "";
+                                        while (!opcaoEditarDev.equals("99")){
+                                            System.out.println("Digite uma opção:\n\n1-Editar Cadastro\n2-Editar Contato\n3-Editar Endereço");
+                                            opcaoEditarDev = scanner.nextLine();
+                                            switch (opcaoEditarDev) {
+                                                case "1" -> {
+                                                    usuarioDevService.listarDev();
+                                                    System.out.println("Digite seu id: ");
+                                                    int index = scanner.nextInt();
+                                                    scanner.nextLine();
+
+                                                    UsuarioDev devNovo = new UsuarioDev();
+                                                    System.out.println("Digite o novo nome: ");
+                                                    devNovo.setNome(scanner.nextLine());
+
+                                                    System.out.println("Digite a Stack");
+                                                    devNovo.setStack(scanner.nextLine());
+
+                                                    System.out.println("Digite o E-Mail");
+                                                    devNovo.setEmail(scanner.nextLine());
+
+                                                    usuarioDevService.editarDev(index, devNovo);
+                                                }
+                                                case "2" -> {
+                                                    contatoService.listar();
+                                                    System.out.println("Digite o seu id para continuar");
+                                                    int id = scanner.nextInt();
+                                                    scanner.nextLine();
+
+                                                    Contato contato = new Contato();
+
+                                                   /* System.out.println("Digite o codigo da pessoa para adicionar contato: ");
+                                                    pessoaService.listarPessoas();
+                                                    int index = scanner.nextInt();
+                                                    scanner.nextLine();
+
+                                                    Pessoa pessoaContato = new Pessoa();
+                                                    pessoaContato.setIdPessoa(index);
+                                                    contato.setPessoa(pessoaContato);*/
+
+                                                    System.out.println("Digite o tipo (1-RESIDENCIAL 2-COMERCIAL): ");
+                                                    int tipo = scanner.nextInt();
+                                                    TipoEnum tipoContato = TipoEnum.ofTipo(tipo);
+                                                    contato.setTipoEnum(tipoContato);
+                                                    scanner.nextLine();
+
+                                                    System.out.println("Digite o numero: ");
+                                                    contato.setNumero(scanner.nextLine());
+
+                                                    contatoService.editar(id, contato);
+                                                }
+                                                case "3" -> {
+                                                    enderecoService.listar();
+                                                    System.out.println("Digite o seu id para continuar");
+                                                    int id = scanner.nextInt();
+                                                    scanner.nextLine();
+
+                                                    Endereco endereco = new Endereco();
+                                                   /* System.out.println("Digite o codigo da pessoa para adicionar contato: ");
+                                                    pessoaService.listarPessoas();
+                                                    int index = scanner.nextInt();
+                                                    scanner.nextLine();
+
+                                                    Pessoa pessoaContato = new Pessoa();
+                                                    pessoaContato.setIdPessoa(index);
+                                                    contato.setPessoa(pessoaContato);*/
+
+                                                    System.out.println("Digite o logradouro: ");
+                                                    endereco.setLogradouro(scanner.nextLine());
+                                                    System.out.println("Digite o numero: ");
+                                                    endereco.setNumero(scanner.nextLine());
+                                                    System.out.println("Digite o CEP: ");
+                                                    endereco.setCep(scanner.nextLine());
+                                                    System.out.println("Digite o complemento: ");
+                                                    endereco.setComplemento(scanner.nextLine());
+                                                    /*System.out.println("Digite o tipo (1-RESIDENCIAL 2-COMERCIAL): ");
+                                                    int tipo = scanner.nextInt();
+                                                    TipoEnum tipoEndereco = TipoEnum.ofTipo(tipo);
+                                                    endereco.set(tipoEndereco);
+                                                    scanner.nextLine();*/
+                                                    System.out.println("Digite a cidade: ");
+                                                    endereco.setCidade(scanner.nextLine());
+                                                    System.out.println("Digite o Estado: ");
+                                                    endereco.setEstado(scanner.nextLine());
+                                                    System.out.println("Digite o País: ");
+                                                    endereco.setPais(scanner.nextLine());
+
+                                                    enderecoService.editar(id, endereco);
+                                                }
+                                                default -> {
+                                                    System.err.println("Opção Inválida, digite novamente");
+                                                }
+                                            }
+                                        }
+                                    }
+                                    case "3" -> {
+                                        usuarioDevService.listarDev();
+                                        System.out.println("Digite seu id: ");
+                                        int id = scanner.nextInt();
+                                        usuarioDevService.removerDev(id);
+                                    }
+                                }
+                            }
+                        }else {
+                            System.err.println("Usuário ou Senha Inválidos");
+                        }
+                    } catch (SQLException erro) {
+                        System.err.println("Falha na conexão." + erro);
                     }
-                    break;
-                case 2:
-                    usuarioDev.listar();
-                    break;
-                case 3:
-                     System.out.println("Qual pessoa voc� deseja editar?");
-                     usuarioDev.listar();
-                     int index = scanner.nextInt();
-                     scanner.nextLine();
-                     UsuarioDev novoDev = new UsuarioDev();
-                     System.out.println("Nome: ");
-                     usuarioDev.setNome(scanner.nextLine());
-                     System.out.println("Email: ");
-                     usuarioDev.setEmail(scanner.nextLine());
-                     System.out.println("Stack: ");
-                     usuarioDev.setStack(scanner.nextLine());
-                     System.out.println("Rua: ");
-                     endereco.setLogradouro(scanner.nextLine());
-                     System.out.println("Numero: ");
-                     endereco.setNumero(scanner.nextLine());
-                     System.out.println("Cidade: ");
-                     endereco.setCidade(scanner.nextLine());
-                     System.out.println("Estado: ");
-                     endereco.setEstado(scanner.nextLine());
-                     System.out.println("País: ");
-                     endereco.setPais(scanner.nextLine());
-                     usuarioDev.setEndereco(endereco);
-                     usuarioDev.editar(index, usuarioDev);
-                     System.out.println("Cadastro alterado com sucesso!");
-                     break;
-                case 4:
-                    System.out.println("Qual pessoa voc� deseja excluir?");
-                    usuarioDev.listar();
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
-                    usuarioDev.remover(id);
-                    break;
-                case 5:
-                    System.out.println("Post's");
-                    System.out.print("Título: ");
-                    titulo = scanner.nextLine();
-                    System.out.println("Descrição: ");
-                    texto = scanner.nextLine();
-                    usuarioDev.publicar(usuarioDev, titulo, texto);
-                    usuarioDev.listarPostagens();
-                    break;
-                case 6:
-                    System.out.println("Excluir Postagem");
-                    usuarioDev.listarPostagens();
-                    System.out.print("Informe o ID da postagem: ");
-                    int opId = scanner.nextInt();
-                    scanner.nextLine();
-                    usuarioDev.removerPostagemPorId(opId);
-                    break;
-                case 7:
-                    usuarioDev.listarPostagens();
-                    break;
-                case 9:
-                      break;
-                default:
-                      System.err.println("op��o inv�lida");
-                      break;
+                }
+                default -> {
+                    System.err.println("Opção Inválida, por favor digite novamente");
+                }
             }
         }
     }
