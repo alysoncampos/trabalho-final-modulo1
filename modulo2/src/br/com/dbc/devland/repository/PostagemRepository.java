@@ -1,9 +1,15 @@
-package br.com.dbc.devland.main.repository;
+package br.com.dbc.devland.repository;
 
+<<<<<<< HEAD:modulo2/src/br/com/dbc/devland/main/repository/PostagemRepository.java
 import br.com.dbc.devland.main.exceptions.BancoDeDadosException;
 import br.com.dbc.devland.main.model.Postagem;
 import br.com.dbc.devland.main.model.TipoPostagem;
 import br.com.dbc.devland.main.model.Usuario;
+=======
+import br.com.dbc.devland.exceptions.BancoDeDadosException;
+import br.com.dbc.devland.model.Postagem;
+import br.com.dbc.devland.model.TemaPostagem;
+>>>>>>> c5953a2b8236a428a7357feb2779d91e2f0be55b:modulo2/src/br/com/dbc/devland/repository/PostagemRepository.java
 
 import java.sql.*;
 import java.util.ArrayList;

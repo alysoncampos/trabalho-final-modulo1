@@ -1,4 +1,4 @@
-package br.com.dbc.devland.main.model;
+package br.com.dbc.devland.model;
 
 
 import java.sql.Date;

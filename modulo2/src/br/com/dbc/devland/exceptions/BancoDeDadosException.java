@@ -1,4 +1,4 @@
-package br.com.dbc.devland.main.exceptions;
+package br.com.dbc.devland.exceptions;
 
 import java.sql.SQLException;
 
