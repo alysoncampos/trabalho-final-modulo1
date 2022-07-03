@@ -1,27 +1,27 @@
 package br.com.dbc.devland.repository;
 
+import br.com.dbc.devland.model.ConsoleColors;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBancoDeDados {
-    private static final String SERVER = "localhost";
-    private static final String PORT = "1521"; // Porta TCP padrão do Oracle
-    private static final String DATABASE = "xe";
 
-    // Configuração dos parâmetros de autenticação
-    private static final String USER = "system";
-    private static final String PASS = "oracle";
-
-    public static Connection getConnection() throws SQLException {
-        String url = "jdbc:oracle:thin:@" + SERVER + ":" + PORT + ":" + DATABASE;
-
-        // Abre-se a conexão com o Banco de Dados
-        Connection con = DriverManager.getConnection(url, USER, PASS);
-
-        // sempre usar o schema vem_ser
-        con.createStatement().execute("alter session set current_schema=VEM_SER");
-
-        return con;
+    public static Connection getConnection(){
+        Connection connection = null;
+        String dbUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+        String username = "DEVLAND";
+        String password = "oracle";
+        try {
+            Class.forName("oracle.jdbc.OracleDriver");
+            connection = DriverManager.getConnection(dbUrl,username,password);
+            System.out.println(ConsoleColors.GREEN_UNDERLINED + "\nLoading........\n" + ConsoleColors.RESET);
+        }catch (ClassNotFoundException ex){
+            System.err.println("Erro" + ex.getMessage());
+        }catch (SQLException ex){
+            System.err.println("Erro no Servidor" + ex.getMessage());
+        }
+        return connection;
     }
 }
