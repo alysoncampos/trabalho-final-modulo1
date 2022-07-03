@@ -69,12 +69,12 @@ public abstract class Usuario {
 
     public void publicar(Usuario usuario, String titulo, String mensagem) {
         Postagem postagem = new Postagem();
-        postagem.setData(new Date());
+        //postagem.setData(new Date());
         postagem.setTitulo(titulo);
         postagem.setDescricao(mensagem);
-        postagem.setUsuario(usuario);
+        //postagem.setUsuario(usuario);
 
-        this.getListaDePostagens().add(postagem);
+        //this.getListaDePostagens().add(postagem);
     }
 
     public String toString() {
