@@ -1,26 +1,50 @@
-package br.com.dbc.devland.main.entities;
+package br.com.dbc.devland.model;
 
-import br.com.dbc.devland.main.interfaces.Impressao;
+import br.com.dbc.devland.repository.Impressao;
 
 public class Endereco implements Impressao {
 
     private String logradouro;
+
     private String numero;
+
     private String cidade;
+
     private String estado;
+
     private String pais;
 
-    public Endereco(){
+    private String complemento;
 
+    private Integer id_endereco;
+
+    public Integer getId_endereco() {
+        return id_endereco;
     }
 
-    public Endereco(String logradouro, String numero, String cidade, String estado, String pais) {
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.pais = pais;
+    public void setId_endereco(Integer id_endereco) {
+        this.id_endereco = id_endereco;
     }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    private String cep;
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public Endereco(){    }
 
     public String getLogradouro() {
         return logradouro;
@@ -69,13 +93,14 @@ public class Endereco implements Impressao {
 
     @Override
     public String toString() {
-        return "Conta{" +
-                "logradouro='" + logradouro + '\'' +
-                ", numero=" + numero +
-                ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
-                ", pais='" + pais + '\'' +
+        return "Endereço{" +
+                "id: " + id_endereco + '\'' +
+                "logradouro: '" + logradouro + '\'' +
+                "complemento: '" + complemento + '\'' +
+                ", numero: " + numero +
+                ", cidade: ='" + cidade + '\'' +
+                ", estado: ='" + estado + '\'' +
+                ", pais: '" + pais + '\'' +
                 '}';
     }
-
 }
