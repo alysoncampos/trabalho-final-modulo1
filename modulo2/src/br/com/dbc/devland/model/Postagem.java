@@ -10,7 +10,8 @@ public class Postagem {
     private String titulo;
     private String descricao;
     private Date data = new java.sql.Date(System.currentTimeMillis());
-    //private Usuario usuario;
+
+    private Usuario usuario;
 
     public Integer getIdPostagem() {
         return idPostagem;
@@ -52,13 +53,13 @@ public class Postagem {
         this.data = data;
     }
 
-//    public Usuario getUsuario() {
-//        return usuario;
-//    }
-//
-//    public void setUsuario(Usuario usuario) {
-//        this.usuario = usuario;
-//    }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     @Override
     public String toString() {

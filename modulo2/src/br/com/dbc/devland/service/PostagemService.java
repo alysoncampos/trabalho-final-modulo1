@@ -67,13 +67,13 @@ public class PostagemService {
         }
     }
 
-//    public void listarPostagemPorPessoa(Integer idPessoa){
-//        try {
-//            postagemRepository.listarPo(idPessoa).forEach(System.out::println);
-//        } catch (BancoDeDadosException e){
-//            e.printStackTrace();
-//        }
-//    }
+    public void listarPostagemPorPessoa(Integer idPessoa){
+        try {
+            postagemRepository.listarPostagemPorPessoa(idPessoa).forEach(System.out::println);
+        } catch (BancoDeDadosException e){
+            e.printStackTrace();
+        }
+    }
 
 //    public void listarPorTipo(Integer tipo){
 //        try {
