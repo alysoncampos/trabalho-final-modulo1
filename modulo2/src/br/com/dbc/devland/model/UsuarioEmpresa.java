@@ -8,6 +8,24 @@ public class UsuarioEmpresa extends Usuario implements Impressao, Manipulacao<Us
     private static String tipo = "EMPRESA";
     private String areaDeAtuacao;
 
+    public String getAreaDeAtuacao() {
+        return areaDeAtuacao;
+    }
+
+    public void setAreaDeAtuacao(String areaDeAtuacao) {
+        this.areaDeAtuacao = areaDeAtuacao;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    private String cnpj;
+
     @Override
     public void adicionar(UsuarioEmpresa objeto) {
         getListaDeUsuarios().add(objeto);
