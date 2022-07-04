@@ -1,10 +1,7 @@
 package br.com.dbc.devland.view;
 
 import br.com.dbc.devland.model.*;
-import br.com.dbc.devland.service.ContatoService;
-import br.com.dbc.devland.service.EnderecoService;
-import br.com.dbc.devland.service.LoginService;
-import br.com.dbc.devland.service.UsuarioDevService;
+import br.com.dbc.devland.service.*;
 
 
 import javax.swing.*;
@@ -169,7 +166,30 @@ public class Main {
                                 opcaoLoginDev = scanner.nextLine();
                                 switch (opcaoLoginDev) {
                                     case "1" -> {
-                                        //tudo relacionado a postagem aqui
+                                        //postagem
+                                        /*Postagem post = new Postagem();
+                                        PostagemService postService = new PostagemService();
+                                        String opcaoPostagem = "";
+                                        int id;
+                                        System.out.println("\nDigite uma opção:\n" +
+                                                "\n1-Adicionar Postagem" +
+                                                "\n2-Remover Postagem" +
+                                                "\n3-Editar Postagem" +
+                                                "\n4-Listar Postages" +
+                                                "\n5-Listar Por Tipo");
+                                        opcaoPostagem = scanner.nextLine();
+                                        System.out.println("\nTipo da postagem:" +
+                                                "\n1-Vagas" +
+                                                "\n2-Programas" +
+                                                "\n3-Pensamentos");
+                                        post.setTipoPostagem(TipoPostagem.ofTema(scanner.nextInt()));
+                                        scanner.nextLine();
+                                        System.out.println("Título: ");
+                                        post.setTitulo(scanner.nextLine());
+                                        System.out.println("Texto: ");
+                                        post.setDescricao(scanner.nextLine());
+                                        post.setUsuario();
+                                        postService.adicionar(post);*/
                                     }
                                     case "2" -> {
                                         String opcaoEditarDev = "";
