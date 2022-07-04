@@ -142,7 +142,6 @@ public class Main {
                 }
                 case "3" -> {
                     try {
-                        //Verificar, só esta puxando CPF por enquanto
                         System.out.println(ConsoleColors.BLUE_BOLD + "CPF ou CNPJ");
                         String login = scanner.nextLine();
 
@@ -158,7 +157,6 @@ public class Main {
                         ResultSet rs = objLoginService.autenticacaoDev(objLoginDev);
 
                         if (rs.next()) {
-                            //tela que eu quero abrir
                             System.out.println("Logado com sucesso! Seja Bem-Vindo");
                             String opcaoLoginDev = "";
                             while (!opcaoLoginDev.equals("99")) {
@@ -166,8 +164,7 @@ public class Main {
                                 opcaoLoginDev = scanner.nextLine();
                                 switch (opcaoLoginDev) {
                                     case "1" -> {
-                                        //postagem
-                                        /*Postagem post = new Postagem();
+                                        Postagem post = new Postagem();
                                         PostagemService postService = new PostagemService();
                                         String opcaoPostagem = "";
                                         int id;
@@ -188,8 +185,36 @@ public class Main {
                                         post.setTitulo(scanner.nextLine());
                                         System.out.println("Texto: ");
                                         post.setDescricao(scanner.nextLine());
-                                        post.setUsuario();
-                                        postService.adicionar(post);*/
+                                        post.setUsuario(usuarioPostagem);
+                                        postService.adicionar(post);
+
+                                        System.out.println("Qual postagem você deseja remover? ");
+                                        postService.listar();
+                                        id = scanner.nextInt();
+                                        scanner.nextLine();
+                                        postService.remover(id);
+                                        System.out.print("Qual postagem você deseja editar? ");
+                                        postService.listar();
+                                        id = scanner.nextInt();
+                                        scanner.nextLine();
+
+                                        System.out.println("Digite o tipo (1-Vagas 2-Programas 3-Pensamento):");
+                                        post.setTipoPostagem(TipoPostagem.ofTema(scanner.nextInt()));
+                                        scanner.nextLine();
+                                        System.out.println("Título: ");
+                                        post.setTitulo(scanner.nextLine());
+                                        System.out.println("Texto: ");
+                                        post.setDescricao(scanner.nextLine());
+                                        postService.editar(id, post);
+
+                                        postService.listar();
+
+
+                                        System.out.println("Digite o tipo que deseja ver as postagens\n" +
+                                                " [1-Vagas | 2-Programas | 3-Pensamentos]:");
+                                        int opcaoTipo = scanner.nextInt();
+                                        scanner.nextLine();
+                                        postService.listarPorTipo(opcaoTipo);
                                     }
                                     case "2" -> {
                                         String opcaoEditarDev = "";
