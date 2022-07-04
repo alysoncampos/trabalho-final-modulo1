@@ -1,4 +1,4 @@
-package br.com.dbc.devland.main.entities;
+package br.com.dbc.devland.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,34 +6,15 @@ import java.util.UUID;
 
 public abstract class Usuario {
 
-    private String id;
+    private String nome, email, tipo, senha;
+    private Integer id_usuario;
 
-    private String nome;
-
-    private String email;
-
-    private Endereco endereco;
-
-    private static ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
-    private static ArrayList<Postagem> listaDePostagens = new ArrayList<>();
-
-    public Usuario() {
-
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
-    public Usuario(String nome, String email, Endereco endereco) {
-        this.id = idUsuario();
-        this.nome = nome;
-        this.email = email;
-        this.endereco = endereco;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getNome() {
@@ -52,13 +33,24 @@ public abstract class Usuario {
         this.email = email;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    private static ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
+    private static ArrayList<Postagem> listaDePostagens = new ArrayList<>();
 
     public static ArrayList<Usuario> getListaDeUsuarios() {
         return listaDeUsuarios;
@@ -73,17 +65,22 @@ public abstract class Usuario {
         return uuid.toString();
     }
 
-
     //CRUD POSTAGEM
 
     public void publicar(Usuario usuario, String titulo, String mensagem) {
         Postagem postagem = new Postagem();
-        postagem.setData(new Date());
+        //postagem.setData(new Date());
         postagem.setTitulo(titulo);
         postagem.setDescricao(mensagem);
-        postagem.setUsuario(usuario);
+        //postagem.setUsuario(usuario);
 
-        this.getListaDePostagens().add(postagem);
+        //this.getListaDePostagens().add(postagem);
+    }
+
+    public String toString() {
+        return "{" +
+                "Seu id=" + id_usuario +
+                '}';
     }
 
     public void removerPostagemPorId(Integer indice){
@@ -106,24 +103,5 @@ public abstract class Usuario {
             System.out.println("------------------------------");
             indice++;
         }
-    }
-
-//    public void listarMinhasPostagens() {
-//        System.out.println("Minhas Postagens: ");
-//        for (Postagem postagem : listaDePostagens) {
-//            if (getId().equals(postagem.getUsuario().getId())) {
-//                System.out.println(postagem);
-//            }
-//        }
-//    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id='" + id + '\'' +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", endereco=" + endereco +
-                '}';
     }
 }

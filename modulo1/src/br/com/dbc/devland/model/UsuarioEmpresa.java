@@ -1,7 +1,7 @@
-package br.com.dbc.devland.main.entities;
+package br.com.dbc.devland.model;
 
-import br.com.dbc.devland.main.interfaces.Impressao;
-import br.com.dbc.devland.main.interfaces.Manipulacao;
+import br.com.dbc.devland.repository.Impressao;
+import br.com.dbc.devland.repository.Manipulacao;
 
 public class UsuarioEmpresa extends Usuario implements Impressao, Manipulacao<UsuarioEmpresa> {
 

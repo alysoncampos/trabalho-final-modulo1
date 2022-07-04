@@ -1,8 +1,8 @@
-package br.com.dbc.devland.main;
+package br.com.dbc.devland;
 
-import br.com.dbc.devland.main.entities.Endereco;
-import br.com.dbc.devland.main.entities.UsuarioDev;
-import br.com.dbc.devland.main.entities.UsuarioEmpresa;
+import br.com.dbc.devland.model.Endereco;
+import br.com.dbc.devland.model.UsuarioDev;
+import br.com.dbc.devland.model.UsuarioEmpresa;
 
 import java.util.Locale;
 import java.util.Scanner;

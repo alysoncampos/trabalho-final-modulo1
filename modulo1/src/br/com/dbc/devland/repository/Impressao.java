@@ -1,4 +1,4 @@
-package br.com.dbc.devland.main.interfaces;
+package br.com.dbc.devland.repository;
 
 public interface Impressao {
     void imprimir();

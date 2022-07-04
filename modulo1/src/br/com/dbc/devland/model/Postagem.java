@@ -1,6 +1,6 @@
-package br.com.dbc.devland.main.entities;
+package br.com.dbc.devland.model;
 
-import br.com.dbc.devland.main.interfaces.Impressao;
+import br.com.dbc.devland.repository.Impressao;
 
 import java.util.Date;
 
