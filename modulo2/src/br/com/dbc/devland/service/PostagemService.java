@@ -75,11 +75,11 @@ public class PostagemService {
         }
     }
 
-//    public void listarPorTipo(Integer tipo){
-//        try {
-//            postagemRepository.listarPorTipo(tipo).forEach(System.out::println);
-//        } catch (BancoDeDadosException e){
-//            e.printStackTrace();
-//        }
-//    }
+    public void listarPorTipo(Integer tipo){
+        try {
+            postagemRepository.listarPorTipo(tipo).forEach(System.out::println);
+        } catch (BancoDeDadosException e){
+            e.printStackTrace();
+        }
+    }
 }
